@@ -1,0 +1,77 @@
+<app-header [title]="'Bienvenido al panel de aliados'"
+    [subtitle]="'Aqui podras ver y gestionar tus aliados'"></app-header>
+<div class="flex justify-center items-center h-full md:w-full">
+    <div class="justify-center items-center w-4/6 max-md:w-72">
+        <div class="max-md:pb-6 md:pb-9 md:flex justify-between max-md:w-72">
+            <div class="relative max-md:mb-5">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <fa-icon [icon]="falupa" class=" text-xl right-5 transform " style="color: #adb7c7;"></fa-icon>
+                </div>
+                <input type="search" id="search" [(ngModel)]="userFilter.nombre"
+                    class="block w-64 h-10 ps-5 text-sm border border-gray-300 rounded-lg max-md:w-full"
+                    placeholder="Buscar..." required />
+            </div>
+            <div class="flex justify-between">
+                <select (change)="onEstadoChange($event)">
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+                <button class="border border-sky-300 py-2 px-4 rounded text-sky-400" (click)="limpiarFiltro()">Limpiar</button>
+                <button class="bg-sky-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Agregar aliado
+                </button>
+            </div>
+
+        </div>
+        <div class="headers md:flex md:justify-between md:mb-6 md:w-auto">
+            <h2 class="hidden md:block md:w-28 whitespace-nowrap overflow-hidden text-center font-bold">Nombre</h2>
+            <h2 class="hidden md:block md:w-24 whitespace-nowrap overflow-hidden text-center font-bold ml-20">Correo
+            </h2>
+            <h2 class="hidden md:block md:w-56 whitespace-nowrap overflow-hidden text-center font-bold md:ml-2 ">
+                Emprendedores
+            </h2>
+            <h2
+                class="hidden md:block md:w-auto whitespace-nowrap overflow-hidden text-center font-bold md:pr-7 md:mr-10">
+                Estado
+            </h2>
+            <h2 class="hidden md:block  whitespace-nowrap overflow-hidden text-center font-bold md:w-20"></h2>
+        </div>
+        <div class="contenido">
+            <div *ngFor="let aliados of listaAliado  | paginate: { itemsPerPage: 5, currentPage: page }"
+                class="info-empresa  max-md:h-auto md:w-auto md:flex justify-between text-center mb-4 md:py-4 max-md:pl-3 bg-neutral-200 rounded-md">
+                <div class="flex max-md:pt-3 px-2 max-md:h-10">
+                    <h3 class="block md:hidden mr-1 font-bold ">Nombre: </h3>
+                    <h3 class="md:w-40 whitespace-nowrap overflow-hidden max-md:h-6" style="text-overflow: ellipsis;">
+                        {{aliados.nombre }}</h3>
+                </div>
+                <div class="flex px-2 max-md:h-7">
+                    <h3 class="block md:hidden mr-1 font-bold ">Correo: </h3>
+                    <h3 class="md:w-26 whitespace-nowrap overflow-hidden max-md:h-6" style="text-overflow: ellipsis;">
+                        {{ aliados.email }}</h3>
+                </div>
+                <div class="flex  px-2 max-md:h-8">
+                    <h3 class="block md:hidden mr-1 font-bold ">Emprendedores: </h3>
+                    <h3 class="md:w-40 md:pr-2 whitespace-nowrap overflow-hidden max-md:h-6"
+                        style="text-overflow: ellipsis;">
+                    </h3>
+                </div>
+                <div class="flex  px-2 max-md:h-8">
+                    <h3 class="block md:hidden mr-1 font-bold ">Estado: </h3>
+                    <h3 class="md:w-40 md:pr-2 whitespace-nowrap overflow-hidden max-md:h-6"
+                        style="text-overflow: ellipsis;">
+                        {{ aliados.estado_usuario }} </h3>
+                </div>
+                <div class="flex justify-center  px-2">
+                    <h3 class="block md:hidden"></h3>
+                    <h3 class="md:w-11 md:mr-9 md:pr-14 "><fa-icon [icon]="faeye"
+                            class=" text-xl right-5 top-1/2 transform -translate-y-1/2 max-md:h-5"></fa-icon>
+                    </h3>
+                </div>
+
+            </div>
+            <div class="text-center max-md:pr-10">
+                <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+                    nextLabel="Siguiente"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

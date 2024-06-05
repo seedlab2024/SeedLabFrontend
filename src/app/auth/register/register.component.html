@@ -10,13 +10,13 @@
                 </div>
                 <div class="flex flex-wrap mt-12">
                     <div class="w-full md:w-1/3 pr-6">
-                        <img src="assets/images/logo-seed.jpg" alt="Imagen"
-                            class="mx-auto max-w-xs md:max-w-full md:max-h-64 md:mt-16" loading="lazy" />
+                        <img src="/assets/images/logo_sinFondo.png" alt="Imagen"
+                            class="mx-auto max-w-xs md:max-w-full md:max-h-64 md:mt-20" loading="lazy" />
                     </div>
                     <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-12 lg:-mt-6">
                         <label for="nombre" class="block mb-2 text-blue-400">Nombre:</label>
                         <input type="text" id="nombre" formControlName="nombre"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
                         <div *ngIf="submitted && f.nombre.errors"
                             class="text-red-500 bg-red-50 pl-2 rounded-lg inline-block">
                             <div *ngIf="f.nombre.errors.required">Este campo es requerido *</div>
@@ -26,17 +26,17 @@
                     <div class="w-full md:w-1/3 pl-0 md:pl-2  md:-mt-12 lg:-mt-6">
                         <label for="apellido" class="block mb-2 text-blue-400">Apellido:</label>
                         <input type="text" id="apellido" formControlName="apellido"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
                         <div *ngIf="submitted && f.apellido.errors"
                             class="text-red-500 bg-red-50 pl-2 rounded-lg inline-block">
                             <div *ngIf="f.apellido.errors.required">Este campo es requerido *</div>
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 pr-0 md:pr-2"></div>
-                    <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-32 lg:-mt-32 relative">
+                    <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-32 lg:-mt-36 relative">
                         <label for="tipodocumento" class="block mb-2 text-blue-400">Tipo de Documento:</label>
                         <select id="tipodocumento" formControlName="nombretipodoc"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100">
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100">
                             <option value="" disabled selected>
                                 Seleccionar tipo de documento...
                             </option>
@@ -51,10 +51,10 @@
                         <fa-icon [icon]="faIdCard" class="absolute right-5 top-4 mt-7 text-cyan-500  z-0  text-lg "
                             styles=" pointer-events: auto;"></fa-icon>
                     </div>
-                    <div class="w-full md:w-1/3 pl-0 md:pl-2 md:-mt-32">
+                    <div class="w-full md:w-1/3 pl-0 md:pl-2 md:-mt-36">
                         <label for="documento" class="block mb-2 text-blue-400">Número de Documento:</label>
                         <input type="number" id="documento" formControlName="documento"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
                         <div *ngIf="submitted && f.documento.errors"
                             class="text-red-500 bg-red-50 pl-2 rounded-lg inline-block">
                             <div *ngIf="f.documento.errors.required">Este campo es requerido *</div>
@@ -64,11 +64,11 @@
                     </div>
 
                     <div class="w-full md:w-1/3 pr-0 md:pr-2"></div>
-                    <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-1 relative">
+                    <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-6 relative">
                         <label for="fechaNacimiento" class="block mb-2 text-blue-400">Fecha de Nacimiento:</label>
 
                         <input type="date" id="fechaNacimiento" formControlName="fecha_nacimiento"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100 appearance-none"
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100 appearance-none"
                             style="background-image: none;" />
                         <div class="absolute top-0 right-0 h-full flex items-center pr-2 mt-2 pointer-events-none">
                             <i class="fas fa-calendar-alt text-cyan-500 cursor-pointer md:-mt-1 pr-3  text-lg"
@@ -80,10 +80,10 @@
                         </div>
 
                     </div>
-                    <div class="w-full md:w-1/3 pl-0 md:pl-2 md:-mt-1 relative">
+                    <div class="w-full md:w-1/3 pl-0 md:pl-2 md:-mt-6 relative">
                         <label for="genero" class="block mb-2 text-blue-400">Género:</label>
                         <select id="genero" formControlName="genero"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100">
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100">
                             <option value="" disabled selected>Seleccionar Género...</option>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
@@ -97,11 +97,11 @@
                             styles=" pointer-events: auto;"></fa-icon>
                     </div>
                     <div class="w-full md:w-1/3 pr-0 md:pr-2 "></div>
-                    <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-1">
+                    <div class="w-full md:w-1/3 pr-0 md:pr-2 md:mt-3">
                         <label for="password" class="block mb-2 mt-3 text-blue-400">Contraseña:</label>
                         <div class="relative">
                             <input [type]="hide ? 'password' : 'text'" id="contrasena" formControlName="password"
-                                class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                                class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
                             <button type="button"
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 text-gray-500"
                                 (click)="hide = !hide">
@@ -127,18 +127,21 @@
                     </div>
                     <div class="w-full md:w-1/3 pr-0 md:pr-2 relative ">
                         <label for="nombre" class="block mb-2 text-blue-400">Correo Electronico:</label>
-                        <input type="text" id="correo" formControlName="email"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                        <input type="email" id="correo" formControlName="email"
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+
                         <div *ngIf="submitted && f.email.errors"
                             class="text-red-500 bg-red-50 pl-2 rounded-lg inline-block">
                             <div *ngIf="f.email.errors.required">Este campo es requerido *</div>
+                            <div *ngIf="f.email.errors.email">Por favor, introduce un correo electrónico válido *</div>
                         </div>
+
                         <!-- <fa-icon [icon]="faEnvelope" class="absolute right-4 top-5 mt-6 text-cyan-500  z-0  " styles=" pointer-events: auto;"></fa-icon> -->
                     </div>
                     <div class="w-full md:w-1/3 pl-0 md:pl-2 relative">
                         <label for="celular" class="block mb-2 text-blue-400">Celular:</label>
                         <input type="number" id="celular" formControlName="celular"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
                         <div *ngIf="submitted && f.celular.errors"
                             class="text-red-500 bg-red-50 pl-2 rounded-lg inline-block mt-2">
                             <div *ngIf="f.celular.errors.required">Este campo es requerido *</div>
@@ -157,7 +160,7 @@
                         <label for="departamento" class="block mb-2 text-blue-400">Departamento:</label>
                         <select id="departamento" name="departamento"
                             (change)="onDepartamentoSeleccionado($event.target.value)"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100 appearance-none ">
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100 appearance-none ">
                             <option value="departamento" disabled selected>
                                 Seleccionar Departamento...
                             </option>
@@ -173,7 +176,7 @@
                     <div class="w-full md:w-1/3 pl-0 md:pl-2 relative">
                         <label for="municipio" class="block mb-2 text-blue-400">Municipio:</label>
                         <select id="municipio" name="municipio" formControlName="municipio"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100 appearance-none ">
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100 appearance-none ">
                             <option value="" disabled selected>Seleccionar Municipio...</option>
                             <option *ngFor="let municipio of listMunicipios" value="{{municipio}}">{{municipio}}
                             </option>
@@ -189,7 +192,7 @@
                     <div class="w-full md:w-1/3 pr-0 md:pr-2 md:-mt-1">
                         <label for="direccion" class="block mb-2 mt-3 text-blue-400">Direccion:</label>
                         <input type="text" id="direccion" formControlName="direccion"
-                            class="p-2 w-full h-14 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
+                            class="p-2 w-full h-12 mb-2 border-blue-300 rounded-lg bg-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100" />
                         <div *ngIf="submitted && f.direccion.errors"
                             class="text-red-500 bg-red-50 pl-2 rounded-lg inline-block">
                             <div *ngIf="f.direccion.errors.required">Este campo es requerido *</div>

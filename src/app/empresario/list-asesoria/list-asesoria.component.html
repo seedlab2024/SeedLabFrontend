@@ -1,0 +1,28 @@
+<div class="flex flex-wrap justify-around">
+    <div class="rounded-xl border border-gray-300 py-2  bg-white mt-10 w-[280px] mx-auto justify-center sm:mx-28 relative">
+        <input class="w-full h-16 outline-none pl-10" placeholder="Buscar">
+        <span class="absolute left-4 top-4">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+    </div>
+    <div class="rounded-2xl border border-gray-300 p-4 bg-white mt-10 w-auto flex flex-wrap justify-center lg:justify-normal mx-28">
+        <button class="btn-color flex items-center px-4 py-2 text-black rounded-md mr-2" (click)="changeColor(this)">
+            Pendientes
+            <span class="bg-blue-200 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center ml-2">1</span>
+        </button>
+        <button class="btn-color flex items-center px-4 py-2 text-black rounded-md mr-2" (click)="changeColor(this)">
+            En curso
+            <span class="bg-blue-200 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center ml-2">2</span>
+        </button>
+        <button class="btn-color flex items-center px-4 py-2 text-black rounded-md mr-2" (click)="changeColor(this)">
+            Finalizadas
+            <span class="bg-blue-200 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center ml-2">3</span>
+        </button>
+        <button class="btn-color flex items-center px-4 py-2 text-black bg-sky-500 rounded-md mr-2" (click)="openCrearAsesoriaModal()">
+            Crear Asesoria
+        </button>
+    </div>
+</div>
+
+<div id="contenedorp" class="flex flex-wrap justify-center mt-6">
+</div>

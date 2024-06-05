@@ -21,6 +21,9 @@ export class ListAsesoriaComponent implements OnInit {
   currentRolId: string | null = null;
   sinAsignarCount: number = 0;
   asignadasCount: number = 0;
+  busqueda: string = '';
+  asesorias: any[] = []; // Tus datos
+  resultadosBusqueda: any[] = []; // 
 
   constructor(
     private asesoriaService: AsesoriaService, 
@@ -110,4 +113,17 @@ export class ListAsesoriaComponent implements OnInit {
     this.showTrue = true;
     this.showFalse = false;
   }
+  manejarCambio(event: Event) {
+    this.busqueda = (event.target as HTMLInputElement).value;
+
+    // Lógica de búsqueda
+    if (this.busqueda) {
+      this.resultadosBusqueda = this.asesorias.filter(asesoria =>
+        asesoria.Nombre_sol.toLowerCase().includes(this.busqueda.toLowerCase())
+      );
+    } else {
+      this.resultadosBusqueda = this.asesorias;
+    }
+  }
+  
 }

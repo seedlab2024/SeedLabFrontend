@@ -10,4 +10,6 @@ export class SwitchService {
   $modal = new EventEmitter<any>();
 
   $modalCrearOrientador = new EventEmitter<any>();
+
+  $modalCrearSuperadmin = new EventEmitter<any>();
 }

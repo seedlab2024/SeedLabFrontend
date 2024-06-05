@@ -34,6 +34,7 @@
     "force": "^0.0.3",
     "jquery": "^3.7.1",
     "js-base64": "^3.7.7",
+    "ngx-color": "^9.0.0",
     "ngx-color-picker": "^16.0.0",
     "ngx-filter-pipe": "^3.0.0",
     "ngx-image-compress": "^15.1.6",

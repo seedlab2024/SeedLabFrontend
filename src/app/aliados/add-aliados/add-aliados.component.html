@@ -1,0 +1,51 @@
+<app-header [title]="'Bienvenido al panel de Agregar Aliados'"
+    [subtitle]="'Aqui puedes crear tus aliados'"></app-header>
+
+<div class="flex flex-col items-center justify-start min-h-screen mt-10 bg-white">
+  <form (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-center w-full max-w-4xl">
+    <div class="flex flex-col sm:flex-row items-center justify-center w-full">
+      <p class="font-semibold">Nombre del Aliado</p>
+      <div class="mt-2 rounded-xl border py-3 px-4 text-base form-control w-[290px] mx-4 sm:mx-[25px]">
+        <input [(ngModel)]="nombre" name="nombre" class="w-full outline-none" placeholder="Nombre" required />
+      </div>
+      <p class="font-semibold">Descripción del Aliado</p>
+      <div class="mt-2 rounded-xl border py-3 px-4 text-base form-control w-[290px] mx-4 sm:mx-[25px]">
+        <input [(ngModel)]="descripcion" name="descripcion" class="w-full outline-none" placeholder="Descripción" required />
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center w-full">
+      <p class="font-semibold">Correo del Aliado</p>
+      <div class="mt-2 rounded-xl border py-3 px-4 text-base form-control w-[290px] mx-4 sm:mx-[25px]">
+        <input [(ngModel)]="email" name="email" class="w-full outline-none" placeholder="Correo" required />
+      </div>
+      <p class="font-semibold">Contraseña del Aliado</p>
+      <div class="mt-2 rounded-xl border py-3 px-4 text-base form-control w-[290px] mx-4 sm:mx-[25px]">
+        <input [(ngModel)]="password" name="password" type="password" class="w-full outline-none" placeholder="Contraseña" required />
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center w-full">
+      <p class="font-semibold">Ruta del Aliado</p>
+      <div class="mt-2 rounded-xl border py-3 px-4 text-base form-control w-[290px] mx-4 sm:mx-[25px]">
+        <input [(ngModel)]="ruta" name="ruta" class="w-full outline-none" placeholder="Ruta" required />
+      </div>
+      <p class="font-semibold">Estado del Aliado</p>
+      <div class="mt-2 rounded-xl border py-3 px-4 text-base form-control w-[290px] mx-4 sm:mx-[25px]">
+        <input [(ngModel)]="estado" name="estado" type="number" class="w-full outline-none" placeholder="Estado" required />
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center w-full mt-20">
+      <div class="flex flex-col items-center mx-4">
+        <div class="w-32 h-32 flex items-center justify-center border overflow-hidden mb-4">
+          <img *ngIf="logoUrl" [src]="logoUrl" alt="Logo" class="object-cover w-full h-full">
+          <span *ngIf="!logoUrl" class="text-gray-500">Logo</span>
+        </div>
+        <input type="file" (change)="onFileSelected($event)" class="mb-4">
+      </div>
+    </div>
+
+    <button type="submit" class="bg-sky-400 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Enviar</button>
+  </form>
+</div>

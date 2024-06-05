@@ -26,6 +26,7 @@ import { OrientadorCrearComponent } from './orientador/orientador-crear/orientad
 
 
 import { CursorutasComponent } from './cursorutas/cursorutas.component';
+import { CrearSuperadminComponent } from './super-admin/crear-superadmin/crear-superadmin.component'
 
 
 const routes: Routes = [
@@ -47,10 +48,13 @@ const routes: Routes = [
   // orientador crear
   { path: 'orientador-crear', component: OrientadorCrearComponent },
 
+  // crear de superadmin
+  { path: 'crear-superadmin', component: CrearSuperadminComponent },
+
   // orientador  //reportes
   { path: 'reportesOrientador', component: ReportesComponent },
   { path: 'rutas', component: RutasComponent },//de rutas
-  { path: 'cursorutas', component: CursorutasComponent},//de curso rutas
+  { path: 'cursorutas', component: CursorutasComponent },//de curso rutas
   { path: 'list-asesoria', component: ListAsesoriaComponent }, //de emprendedor
   { path: 'asesorias', component: AsesoriasComponent },  //de asesor
   { path: 'ver-asesoria', component: VerAsesoriasComponent }, //de osesoria

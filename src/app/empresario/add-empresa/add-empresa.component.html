@@ -1,0 +1,134 @@
+<!-- <form [formGroup]="addEmpresaForm" (ngSubmit)="crearEmpresa()"> -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-12 gap-4 mb-6">
+            <div class="col-span-12 rounded-lg">
+                <div class="flex flex-col">
+                    <div class="flex flex-wrap justify-between">
+                        <div>
+                            <h1 class="text-xl font-bold mr-10 xl:mt-10">Liderrr</h1>
+                        </div>
+                        <div class="flex-col">
+                            <div class="flex flex-wrap justify-center">
+                                <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="nombre" placeholder="Nombres" />
+                                </div>
+                                <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="documento" placeholder="Numero documento" />
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center">
+                                <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <select id="tipoDocumento" formControlName="nombretipodoc" class="w-full outline-none border-none bg-transparent">
+                                        <option value="" disabled selected>Seleccionar tipo de documento...</option>
+                                        <option value="1">Cédula ciudadanía</option>
+                                        <option value="2">Pasaporte</option>
+                                        <option value="3">Carnet de Extranjería</option>
+                                    </select>
+                                </div>
+                                <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <select id="departamento" name="departamento" (change)="onDepartamentoSeleccionado($event.target.value)" class="w-full outline-none border-none bg-transparent">
+                                        <option value="" disabled selected>Seleccionar Departamento...</option>
+                                        <option *ngFor="let nameDepartamento of listDepartamentos" [value]="nameDepartamento">{{nameDepartamento}}</option>
+                                    </select>
+                                </div>
+                                <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <select id="municipio" name="municipio" formControlName="municipio" class="w-full outline-none border-none bg-transparent">
+                                        <option value="" disabled selected>Seleccionar Municipio...</option>
+                                        <option *ngFor="let municipio of listMunicipios" [value]="municipio">{{municipio}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center">
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="correo" placeholder="Email" />
+                                </div>
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="cargo" placeholder="Cargo" />
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center">
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="razonSocial" placeholder="Razón social" />
+                                </div>
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full pr-6 outline-none" formControlName="url_pagina" placeholder="Pagina web" />
+                               
+                                </div>
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="telefono" placeholder="Telefono" />
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center">
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="celular" placeholder="Celular" />
+                                </div>
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="direccion" placeholder="Dirección del emprendimiento" />
+                                </div>
+                                <div class="mt-9 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <input class="w-full outline-none" formControlName="profesion" placeholder="Profesión" />
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center">
+                                <div class="mt-9 rounded-xl outline-none border-1 py-2 px-2 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <textarea placeholder="Experiencia" formControlName="experiencia" class="w-full h-full resize-none focus:outline-none focus:border-gray-300" rows="4" cols="30"></textarea>
+                                </div>
+                                <div class="mt-9 rounded-xl outline-none border-1 py-2 px-2 text-base form-control w-[290px] mx-4 justify-center sm:mx-[25px] relative">
+                                    <textarea placeholder="Funciones" formControlName="funciones" class="w-full h-full resize-none focus:outline-none focus:border-gray-300" rows="4" cols="30"></textarea>
+                                </div>
+                                <div class="items-center mt-9 rounded-xl outline-none border-0 py-2 px-2 text-base form-control w-[290px] mx-4 sm:mx-[25px] relative">
+                                    <p class="w-full h-14 resize-none focus:outline-none focus:border-gray-300 text-justify">
+                                        El apoyo es un recurso o asistencia proporcionada a los empleados para mejorar la eficiencia y la productividad.
+                                    </p>
+                                    <div class="items-center flex rounded-xl outline-none border-0 text-base form-control w-[290px] relative">
+                                        <input class="transform scale-150" type="checkbox" id="mostrarContenido" (change)="mostrarOcultarContenido()" name="checkbox">
+                                        <h5 class="pl-3">Apoyo</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-end pr-10 pt-8">
+                                <button id="guardar" class="px-10 py-2 bg-blue-500 bg-opacity-80 text-white rounded-xl cursor-pointer btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contenido" style="display: none;">
+        <hr class="mt-4">
+        <div class="flex flex-wrap justify-between">
+            <div>
+                <h1 class="text-xl mt-0 font-bold mr-10 xl:mt-10">Apoyo</h1>
+            </div>
+            <div class="flex-col">
+                <div class="flex flex-wrap justify-center">
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Nombre" />
+                    </div>
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Cargo" />
+                    </div>
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Celular" />
+                    </div>
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Correo" />
+                    </div>
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Tipo de documento" />
+                    </div>
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Número de documento" />
+                    </div>
+                    <div class="mt-2 rounded-xl outline-none border-1 py-3 px-4 text-base form-control w-[260px] mx-4 justify-center sm:mx-[25px] relative">
+                        <input class="w-full outline-none" placeholder="Fijo" />
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-end pr-10 pt-8">
+                    <button id="guardar" type="submit" class="px-10 py-2 bg-blue-500 bg-opacity-80 text-white rounded-xl cursor-pointer btn btn-primary">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </form> -->

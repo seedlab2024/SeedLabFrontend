@@ -124,7 +124,7 @@ export class BodyComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.cardSeleccionada.tipo_dato === 'Video') {
       let url = this.cardSeleccionada.ruta_multi;
       let videoId = this.extractVideoId(url);
-      let embedUrl = `https://www.youtube.com/embed/${videoId}?controls=0&showinfo=0&rel=0&modestbranding=1`;
+      let embedUrl = `https://www.youtube.com/embed/${videoId}`;
       this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
     }
     else if(this.cardSeleccionada.tipo_dato === 'Imagen'){

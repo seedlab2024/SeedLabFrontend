@@ -1,11 +1,11 @@
-<div class="flex justify-end w-full">
+<div class="flex justify-end w-full ">
   <mat-toolbar class="app-header bg-white flex items-center py-14 px-8 justify-between w-full">
     <img src="../../../assets/images/logo_sinFondo.png" alt="Logo" class="h-24 w-20 md:w-24 mr-2 md:mr-4 mt-4 md:mt-0">
-    <span class="nav-tool-items flex max-xl:flex-col items-center space-x-4 md:space-x-8 mt-4 md:mt-0 ">
+    <span class="nav-tool-items flex max-sm:flex-col items-center space-x-4 md:space-x-8 mt-4 md:mt-0 ">
       <a mat-button routerLink="login" routerLinkActive="active"
         class="text-sm md:text-base bg-black text-white rounded-lg">Iniciar Sesión</a>
       <a mat-button routerLink="register" routerLinkActive="active"
-        class="text-sm md:text-base bg-blue-400 text-white rounded-lg">Regístrate</a>
+        class="text-sm md:text-base bg-blue-400 text-white rounded-lg max-sm:mt-2">Regístrate</a>
     </span>
   </mat-toolbar>
 </div>
@@ -51,7 +51,7 @@
         </p>
       </div>
     </div>
-    <div class="w-full lg:w-2/4 lg:mt-4 flex items-center justify-center order-last lg:order-none p-4 ">
+    <div class="w-full lg:w-2/4 lg:mt-4 flex items-center justify-center order-last lg:order-none p-4 min-h-60 sm:min-h-96">
       <ng-container *ngIf="cardSeleccionada.tipo_dato === 'Video'">
         <iframe [src]="videoUrl" width="100%" height="100%" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

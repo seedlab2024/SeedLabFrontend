@@ -1,0 +1,82 @@
+<div class="pl-11">
+
+    <div class="mt-6">
+        <h1 class="text-3xl font-bold mb-2 ">Bienvenidos al panel Crear de Superadmin</h1>
+        <p class="mb-2 text-gray-700 ">Aquí puedes ver y gestionar a tus tutoresorientadores </p>
+        <hr class="divide-y divide-light-blue-400 ">
+    </div>
+
+    <div class="flex justify-center items-center h-full md:w-full my-8">
+        <div class="justify-center items-center w-4/6 max-md:w-72">
+            <div class="flex justify-end mb-16">
+                <button (click)="openModalCrearSuperAdmin()" type="button"
+                    class="md:w-auto bg-sky-400 hover:bg-sky-500 text-white py-2 px-4 rounded">
+                    Añadir Orientador
+                    <fa-icon [icon]="faPlus" class="text-md ml-2"></fa-icon>
+                </button>
+                <app-modalcrear-superadmin *ngIf="modalCrearSuperadmin"
+                    [isEditing]="isEditing"></app-modalcrear-superadmin>
+
+            </div>
+            <div class="headers md:flex md:justify-between md:mb-6 pl-10 pr-8">
+                <h2 class="hidden md:block md:w-28 whitespace-nowrap overflow-hidden text-center font-bold">Nombre</h2>
+                <h2 class="hidden md:block md:w-28 whitespace-nowrap overflow-hidden text-center font-bold">Apellido
+                </h2>
+                <h2 class="hidden md:block md:w-28 whitespace-nowrap overflow-hidden text-center font-bold">Celular</h2>
+                <h2 class="hidden md:block md:w-28 whitespace-nowrap overflow-hidden text-center font-bold">Editar</h2>
+
+            </div>
+
+            <div class="contenido">
+                <div
+                    class="info-empresa  max-md:h-auto md:w-auto md:flex justify-between text-center mb-4 md:py-4 max-md:pl-3 bg-neutral-200 rounded-md ">
+
+
+
+                    <div class="flex max-md:pt-3 px-2 max-md:h-10">
+                        <div class="max-md:flex">
+                            <h3 class="block md:hidden mr-1 font-bold ">Nombre: </h3>
+                            <h3 class="md:w-40 max-md:w-32 whitespace-nowrap overflow-hidden max-md:h-6 text-start md:pl-4 md:pt-2"
+                                style="text-overflow: ellipsis;">
+                                Jesus
+                            </h3>
+
+                        </div>
+
+                    </div>
+                    <div class="flex px-2 max-md:h-7">
+                        <h3 class="block md:hidden mr-1 font-bold ">Apellido: </h3>
+                        <h3 class="md:w-26 whitespace-nowrap overflow-hidden max-md:h-6  md:pt-2"
+                            style="text-overflow: ellipsis;">
+                            Alberto
+
+                        </h3>
+                    </div>
+                    <div class="flex  px-2 max-md:h-8">
+                        <h3 class="block md:hidden mr-1 font-bold ">Numero celular: </h3>
+                        <h3 class="md:w-40 md:pr-2 whitespace-nowrap overflow-hidden max-md:h-6  md:pt-2"
+                            style="text-overflow: ellipsis;">
+                            3024587959
+                        </h3>
+                    </div>
+                    <div class="flex justify-center  px-2 ">
+                        <h3 class="block md:hidden"></h3>
+                        <div class="md:w-11 md:mr-9 md:pr-14 max-md:absolute max-md:right-56 md:pt-2">
+                            <button class="" (click)="opneModalEditarSuperAdmin()" type="submit">
+                                <fa-icon [icon]="faPen"
+                                    class=" text-xl right-5 top-1/2 transform -translate-y-1/2 max-md:h-5  max-md:hidden  "></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,1023 @@
+<app-header [title]="'Encuesta de maduracion'" [subtitle]="'Empresa blablablablabla'"></app-header>
+
+
+<div id="seccion1" class="">
+    <div class="seccion-top">
+        <div class="flex justify-around text-center">
+        <button disabled>
+            <div class="flecha-izq mt-3">
+                <fa-icon [icon]="faArrowLeft" class="border-2 border-gray-400 font-bold text-gray-400 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+            </div>
+        </button>
+            <div id="1" class=" md:block lg:w-[250px] max-md:w-[350px]">
+                <h2 class="m-0 p-0 border-2 w-9 mx-auto border-sky-500 font-bold text-sky-500 rounded-full">1</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-sky-500 font-bold" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <div id="2" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">2</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion financiera</h2>
+            </div>
+            <div id="3" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">3</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion del mercado</h2>
+            </div>
+            <div id="4" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">4</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <button (click)="mostrarSeccion2()">
+                <div class="flecha-der mt-3">
+                    <fa-icon [icon]="faArrowRight" class="border-2 border-sky-500 font-bold text-sky-500 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>
+            </button>            
+        </div>
+    </div>
+   
+   
+    <div class="col-span-12 bg-white rounded-lg md:mx-auto p-8 shadow-lg 2xl:w-3/6 w-5/6 mx-10 justify-center">
+        <div class="flex flex-col lg:flex-row w-full lg:h-full items-center justify-center">
+            <div class="flex w-auto h-auto items-center justify-center">
+                <div class="">
+                    <div class="flex flex-col">
+                        <div class="flex flex-wrap justify-between pr-6">
+                            <div class="flex-col">
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8">¿Cuantos integrantes conforman su equipo de
+                                            trabajo?</h3>
+                                        <select class="md:w-2/6 w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="rounded-xl pb-4 w-full justify-center text-center">
+                                        <h3 class=" md:text-start">Cuenta con personas de apoyo en:</h3>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Administrativo</h3>
+                                            <div class="flex flex-wrap justify-around w-full text-right">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption1">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption1 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Desarrollo</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="3Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption2">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="4Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption2 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Producción</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption3">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption3 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Innovación y/o desarrollo</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption4">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption4 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>                                            
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Comercialización</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption5">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption5 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su emprendimiento esta legalmente constituido?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Cumple con las normas tributarias, contables, laborales, comerciales y/o legales para desempeñar la actividad?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claramente definido su modelo de negocio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claramente definido su plan de negocios?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene experiencia comercial relacionada con el producto y/o servicio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar: ¿Cuánto tiempo de experiencia relacionada tiene?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su emprendimiento tiene definido la misión y la visión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar ¿Cuál es su misión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar ¿Cuál es su visión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene definidas metas empresariales?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿El personal de apoyo está debidamente contratado?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Los cargos de apoyo tienen funciones claramente definidas?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿El perfil de los apoyos está debidamente definido?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Separacion de la seccion 1 con 2-->
+
+
+<div id="seccion2" class="" style="display: none;">
+    <div class="seccion-top">
+        <div class="flex justify-around text-center">
+            <button (click)="mostrarSeccion1()">
+                <div class="flecha-izq mt-3">
+                    <fa-icon [icon]="faArrowLeft" class="border-2 border-sky-500 font-bold text-sky-500 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>
+            </button>
+            <div id="1" class=" md:block lg:w-[250px] max-md:w-[350px]">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">1</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <div id="2" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-sky-500 text-sky-500  w-9 mx-auto font-bold rounded-full">2</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-sky-500 font-bold" style="text-overflow: ellipsis;">
+                    Informacion financiera</h2>
+            </div>
+            <div id="3" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">3</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion del mercado</h2>
+            </div>
+            <div id="4" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">4</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <button (click)="mostrarSeccion3()">
+                <div class="flecha-der mt-3">
+                    <fa-icon [icon]="faArrowRight" class="border-2  border-sky-500 font-bold text-sky-500 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>
+            </button>
+        </div>
+    </div>
+   
+   
+    <div class="col-span-12 bg-white rounded-lg md:mx-auto p-8 shadow-lg 2xl:w-3/6 w-5/6 mx-10 justify-center">
+        <div class="flex flex-col lg:flex-row w-full lg:h-full items-center justify-center">
+            <div class="flex w-auto h-auto items-center justify-center">
+                <div class="">
+                    <div class="flex flex-col">
+                        <div class="flex flex-wrap justify-between pr-6">
+                            <div class="flex-col">
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene identificado los gastos y costos de su emprendimiento?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar: ¿Cuáles?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿En su emprendimiento elabora estados financieros?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar: ¿Cuáles?'</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claridad sobre qué presupuestos debe elaborar para su emprendimiento?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar: ¿Cuáles?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Los costos de su producto y/o servicio están claramente definidos?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la anterior respuesta fue afirmativa: ¿Qué factores tiene en cuenta para definir el precio de su producto y/o servicio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Cuáles alternativas de financiamiento usa para apoyar su emprendimiento?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su producto y/o servicio presenta en la actualidad ventas?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la anterior respuesta fue afirmativa: ¿Cuál es el valor promedio / estimado de las ventas al año?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Cuáles canales de ventas usa para comercializar su negocio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Sabe cuáles obligaciones aplican a su emprendimiento?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la anterior respuesta fue afirmativa: ¿Cuáles?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<!-- Separacion seccion 2 con 3-->
+
+<div id="seccion3" class="" style="display: none;">
+    <div class="seccion-top">
+        <div class="flex justify-around text-center">
+            <button (click)="mostrarSeccion2()">
+                <div class="flecha-izq mt-3">
+                    <fa-icon [icon]="faArrowLeft" class="border-2 border-sky-500 font-bold text-sky-500 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>
+            </button>
+            <div id="1" class=" md:block lg:w-[250px] max-md:w-[350px]">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">1</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <div id="2" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">2</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion financiera</h2>
+            </div>
+            <div id="3" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 w-9 mx-auto border-sky-500 font-bold text-sky-500 rounded-full">3</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-sky-500 font-bold" style="text-overflow: ellipsis;">
+                    Informacion del mercado</h2>
+            </div>
+            <div id="4" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">4</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <button (click)="mostrarSeccion4()">
+                <div class="flecha-der mt-3">
+                    <fa-icon [icon]="faArrowRight" class="border-2  border-sky-500 font-bold text-sky-500 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>
+            </button>
+        </div>
+    </div>
+   
+   
+    <div class="col-span-12 bg-white rounded-lg md:mx-auto p-8 shadow-lg 2xl:w-3/6 w-5/6 mx-10 justify-center">
+        <div class="flex flex-col lg:flex-row w-full lg:h-full items-center justify-center">
+            <div class="flex w-auto h-auto items-center justify-center">
+                <div class="">
+                    <div class="flex flex-col">
+                        <div class="flex flex-wrap justify-between pr-6">
+                            <div class="flex-col">
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8">¿Cuantos integrantes conforman su equipo de
+                                            trabajo?</h3>
+                                        <select class="md:w-2/6 w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="rounded-xl pb-4 w-full justify-center text-center">
+                                        <h3 class=" md:text-start">Cuenta con personas de apoyo en:</h3>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Administrativo</h3>
+                                            <div class="flex flex-wrap justify-around w-full text-right">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption1">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption1 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Desarrollo</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="3Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption2">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="4Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption2 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Producción</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption3">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption3 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Innovación y/o desarrollo</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption4">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption4 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>                                            
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Comercialización</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption5">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption5 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su emprendimiento esta legalmente constituido?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Cumple con las normas tributarias, contables, laborales, comerciales y/o legales para desempeñar la actividad?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claramente definido su modelo de negocio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claramente definido su plan de negocios?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene experiencia comercial relacionada con el producto y/o servicio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar: ¿Cuánto tiempo de experiencia relacionada tiene?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su emprendimiento tiene definido la misión y la visión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar ¿Cuál es su misión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar ¿Cuál es su visión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene definidas metas empresariales?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿El personal de apoyo está debidamente contratado?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Los cargos de apoyo tienen funciones claramente definidas?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿El perfil de los apoyos está debidamente definido?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Separacion parte 3 con 4-->
+
+<div id="seccion4" class="" style="display: none;">
+    <div class="seccion-top">
+        <div class="flex justify-around text-center">
+            <button (click)="mostrarSeccion3()">
+                <div class="flecha-izq mt-3">
+                    <fa-icon [icon]="faArrowLeft" class="border-2 border-sky-500 font-bold text-sky-500 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>    
+            </button>
+            <div id="1" class=" md:block lg:w-[250px] max-md:w-[350px]">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">1</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <div id="2" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">2</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion financiera</h2>
+            </div>
+            <div id="3" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 border-gray-400 text-gray-400 w-9 mx-auto font-bold rounded-full">3</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-gray-400" style="text-overflow: ellipsis;">
+                    Informacion del mercado</h2>
+            </div>
+            <div id="4" class="w-[250px] max-lg:hidden">
+                <h2 class="m-0 p-0 border-2 w-9 mx-auto border-sky-500 font-bold text-sky-500 rounded-full">4</h2>
+                <h2 class="whitespace-nowrap overflow-hidden text-sky-500 font-bold" style="text-overflow: ellipsis;">
+                    Informacion operativa tecnica de producto y/o servicio</h2>
+            </div>
+            <button disabled>
+                <div class="flecha-der mt-3">
+                    <fa-icon [icon]="faArrowRight" class="border-2  border-gray-400 text-gray-400 rounded-full px-2 py-1 text-xl right-5 top-1/2 transform -translate-y-1/2"></fa-icon>
+                </div>
+            </button>
+           
+        </div>
+    </div>
+   
+   
+    <div class="col-span-12 bg-white rounded-lg md:mx-auto p-8 shadow-lg 2xl:w-3/6 w-5/6 mx-10 justify-center">
+        <div class="flex flex-col lg:flex-row w-full lg:h-full items-center justify-center">
+            <div class="flex w-auto h-auto items-center justify-center">
+                <div class="">
+                    <div class="flex flex-col">
+                        <div class="flex flex-wrap justify-between pr-6">
+                            <div class="flex-col">
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8">¿Cuantos integrantes conforman su equipo de
+                                            trabajo?</h3>
+                                        <select class="md:w-2/6 w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="rounded-xl pb-4 w-full justify-center text-center">
+                                        <h3 class=" md:text-start">Cuenta con personas de apoyo en:</h3>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Administrativo</h3>
+                                            <div class="flex flex-wrap justify-around w-full text-right">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption1">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption1 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Desarrollo</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="3Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption2">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="4Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption2 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Producción</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption3">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption3 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Innovación y/o desarrollo</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption4">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption4 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>                                            
+                                            </div>
+                                        </div>
+                                        <div class="flex max-md:flex-wrap justify-center text-start w-4/5 mx-auto">
+                                            <h3 class="text-center mt-3 md:w-[200px]">Comercialización</h3>
+                                            <div class="flex flex-wrap justify-around w-full">
+                                                <select id="1Select" class="w-2/6 outline-none text-start mx-auto" [(ngModel)]="selectedOption5">
+                                                    <option value="" disabled selected hidden>Si / No</option>
+                                                    <option value="tipo1">Si</option>
+                                                    <option value="tipo2">No</option>
+                                                </select>
+                                               
+                                                <select id="2Select" class="w-2/6 outline-none text-start mx-auto" [style.display]="selectedOption5 === 'tipo1' ? 'block' : 'none'">
+                                                    <option value="" disabled selected hidden>¿Cuantos?</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su emprendimiento esta legalmente constituido?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Cumple con las normas tributarias, contables, laborales, comerciales y/o legales para desempeñar la actividad?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+   
+                                <!-- Separacion -->
+                                <div class="flex flex-wrap justify-center">
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claramente definido su modelo de negocio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene claramente definido su plan de negocios?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene experiencia comercial relacionada con el producto y/o servicio?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar: ¿Cuánto tiempo de experiencia relacionada tiene?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Su emprendimiento tiene definido la misión y la visión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar ¿Cuál es su misión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">Si la respuesta anterior fue afirmativa indicar ¿Cuál es su visión?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Tiene definidas metas empresariales?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿El personal de apoyo está debidamente contratado?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿Los cargos de apoyo tienen funciones claramente definidas?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:flex md:justify-between rounded-xl pb-2 w-5/6 md:w-full justify-center text-center">
+                                        <h3 class="mr-8 lg:w-[500px] md:w-[400px]">¿El perfil de los apoyos está debidamente definido?</h3>
+                                        <select class="md:w-[150px] w-4/6 outline-none h-3/6 text-start">
+                                            <option value="" disabled selected hidden>Seleccione</option>
+                                            <option value="tipo1">Tipo 1</option>
+                                            <option value="tipo2">Tipo 2</option>
+                                            <option value="tipo3">Tipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+

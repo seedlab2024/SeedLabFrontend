@@ -57,6 +57,8 @@ import { CursorutasComponent } from './cursorutas/cursorutas.component';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SafeUrlPipe } from './cursorutas/cursorutas.component';
+import { CrearSuperadminComponent } from './super-admin/crear-superadmin/crear-superadmin.component';
+import { ModalcrearSuperadminComponent } from './super-admin/modalcrear-superadmin/modalcrear-superadmin.component';
 
 
 
@@ -97,6 +99,8 @@ import { SafeUrlPipe } from './cursorutas/cursorutas.component';
     ModalCrearOrientadorComponent,
     CursorutasComponent,
     SafeUrlPipe,
+    CrearSuperadminComponent,
+    ModalcrearSuperadminComponent,
    
     
   ],

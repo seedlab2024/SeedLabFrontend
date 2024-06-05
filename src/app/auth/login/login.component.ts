@@ -92,6 +92,14 @@ validateToken(): void {
 login(): void {
   const email = this.loginForm.get('email')?.value;
   const password = this.loginForm.get('password')?.value;
+  if (!email) {
+    this.alertService.errorAlert('Error', "El campo de usuario es requerido");
+    return;
+  }
+  if (!password) {
+    this.alertService.errorAlert('Error', "el campo de contraseña es requerido");
+    return;
+  }
   this.loginService.login(email, password).subscribe(
       (rs: any) => {
           this.reply = rs;

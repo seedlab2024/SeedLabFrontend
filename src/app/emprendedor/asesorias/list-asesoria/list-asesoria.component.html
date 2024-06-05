@@ -3,52 +3,43 @@
     [subtitle]="'Aca podra ver un listado de Asesorias y asignarla a distintos aliados'"></app-header>
 
 <!-- Sección de búsqueda -->
-<div class="flex flex-col space-y-4 mb-6 pl-14">
-  <div class="relative w-full max-w-xs">
-    <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
-      <i class="fas fa-search"></i>
-    </span>
-    <input type="text" placeholder="Buscar" class="w-96 h-12 pl-14 P-2 pr-4 border border-gray-300 rounded-md outline-none shadow-md transition duration-200 hover:border-sky-300">
-  </div>
+<div class="flex flex-col space-y-8 mb-6 lg:pl-12 md:pl-12 max-sm:mt-6">
+    <div class="relative w-full sm:max-w-xs max-sm:px-2">
+        <span class="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500 max-sm:left-7 ">
+            <i class="fas fa-search"></i>
+        </span>
+        <input type="text" [(ngModel)]="busqueda" (input)="manejarCambio($event)" placeholder="Buscar" class="w-full sm:lg:w-96 h-12 pl-12 pr-4 border  border-gray-300 rounded-full outline-none shadow-md transition duration-200 hover:border-sky-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-300">
+    </div>
+    <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center sm:justify-start max-sm:space-y-3 bg-white transition duration-200 hover:border-sky-400 lg:shadow-md mr-12 border-gray-300 rounded-full px-3 py-2 sm:border sm:border-gray-300 ">
+        <button id="sinAsignar" class="btn-color flex items-center px-4 py-2 max-sm:ml-14 max-sm:bg-slate-200  text-black ml-6 rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ease-in hover:bg-gray-100 focus:bg-gray-200 mr-4" (click)="showSinAsignar()">
+            Sin asignar
+            <span class="bg-blue-200 text-blue-700 rounded-full  w-6 h-6 flex items-center justify-center ml-2 ">{{ sinAsignarCount }}</span>
+        </button>
+        
+        <button id="Asignadas" class="btn-color flex items-center px-4 py-2 max-sm:ml-14 max-sm:bg-slate-200 text-black rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ease-in hover:bg-gray-100 focus:bg-gray-200 mr-4" (click)="showAsignadas()">
+            Asignadas
+            <span class="bg-blue-200 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center ml-2">{{ asignadasCount }}</span>
+        </button>
+    
+        <button class="btn-color flex items-center px-4 py-2 max-sm:ml-12 text-white bg-sky-500 rounded-md mr-2 mb-1 mt-1 transition duration-200 float-right focus:outline-none focus:ring-2 focus:ring-sky-300 hover:bg-sky-600 " (click)="openCrearAsesoriaModal()">
+            Crear Asesoria
+        </button>
+    </div>
+    
+    <!-- Sección de tarjetas -->
 
-  <!-- Contenedor con borde redondeado -->
-  <div class="sm:flex grid sm:items-center border border-gray-300 rounded-full px-2 py-1 mr-12 bg-white transition duration-200">
-    <button id="sinAsignar" class="btn-color flex mx-auto sm:items-center px-5 py-2 max-sm:my-1 text-black rounded-md mr-2 transition duration-200 focus:outline-none ease-in" (click)="showSinAsignar()">
-      Sin asignar
-      <span class="bg-blue-200 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center ml-2 ">{{ sinAsignarCount }}</span>
-    </button>
-
-    <button id="Asignadas" class="btn-color flex mx-auto sm:items-center px-5 py-2 max-sm:my-1 text-black rounded-md  focus:outline-none  transition duration-200 ease-in" (click)="showAsignadas()">
-      Asignadas
-      <span class="bg-blue-200 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center ml-2">{{ asignadasCount }}</span>
-    </button>
-  </div>
-</div>
-
-
-<!-- Sección de tarjetas -->
-<div *ngIf="showTrue || showFalse" class="flex flex-wrap justify-center mt-6 px-10">
-  <!-- Mensaje para asesorías asignadas -->
-  <div *ngIf="showTrue && asesoriasTrue.length === 0" class="text-center text-gray-500 mt-6">
-    Aún no tienes asesorías asignadas.
-  </div>
-  <!-- Mensaje para asesorías sin asignar -->
-  <div *ngIf="showFalse && asesoriasFalse.length === 0" class="text-center text-gray-500 mt-6">
-    Aún no has creado ninguna asesoría.
-  </div>
- <!-- Listado de asesorías -->
-<div *ngFor="let asesoria of (showTrue ? asesoriasTrue : asesoriasFalse)"
-class="relative bg-white rounded-lg shadow-md overflow-hidden w-80 m-4 ">
-<div class="absolute h-full w-2"
-  [ngClass]="{'bg-green-500': showTrue, 'bg-red-500': showFalse}"></div>
-<div class="p-4">
-  <h2 class="text-lg font-bold mb-2">{{ asesoria.Nombre_sol }}</h2>
-  <div class="block w-full h-24 pr-2 py-2 mt-1 text-gray-900 focus:outline-none resize-none overflow-hidden text-ellipsis" title="{{ asesoria.notas }}">
-    {{ asesoria.notas }}
-  </div>
-  <p class="text-sm text-gray-700 mb-2"><strong>Fecha: </strong> {{ asesoria.fecha_solicitud.slice(0, 10) }}</p>
-  <p class="text-sm text-gray-700 mb-2"><strong>Aliado: </strong>{{ asesoria.nombre }}</p>
-</div>
-</div>
-
-
+    <div *ngIf="showTrue || showFalse" class="flex flex-wrap justify-center mt-6">
+        <div *ngFor="let asesoria of (showTrue ? asesoriasTrue : asesoriasFalse)"
+            class="relative bg-white rounded-lg shadow overflow-hidden w-full sm:w-80 m-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+            <div class="absolute h-full w-2"
+                [ngClass]="{'bg-green-500': asesoria.asignacion, 'bg-red-500': !asesoria.asignacion}"></div>
+            <div class="p-4">
+                <h2 class="text-lg font-bold mb-2 text-gray-800">{{ asesoria.Nombre_sol }}</h2>
+                <h3 class="text-base font-serif mb-2 text-gray-600">{{ asesoria.notas }}</h3>
+                <p class="text-sm text-gray-500 mb-2">{{ asesoria.isorientador }}</p>
+                <p class="text-sm text-gray-500 mb-2">{{ asesoria.fecha_solicitud }}</p>
+                <p class="text-sm text-gray-500 mb-2">{{ asesoria.id_aliado }}</p>
+                <p class="text-sm text-gray-500">{{ asesoria.doc_emprendedor }}</p>
+            </div>
+        </div>
+    </div>
