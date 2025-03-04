@@ -8,9 +8,9 @@ import { Respuesta } from '../Modelos/respuesta.model';
   providedIn: 'root'
 })
 export class RespuestasService {
-  
+
   url = environment.apiUrl + 'respuestas';
- 
+
   constructor(private http: HttpClient) { }
 
   /* Guarda las respuestas del usuario en el servidor */
@@ -19,34 +19,35 @@ export class RespuestasService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + access_token
     });
-    return this.http.post(this.url+'/guardar-respuestas', payload, { headers });
+    return this.http.post(this.url + '/guardar-respuestas', payload, { headers });
   }
 
   /* Guarda las respuestas de una sección específica en Redis */
-  saveAnswersSection(access_token: string, id_empresa: number, sectionId: number, respuestas: any): Observable<any> {
+  saveAnswersSection(access_token: string, id_empresa: number, sectionId: number, vez: number, respuestas: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token,
       'Content-Type': 'application/json'
     });
     // Empaqueta las respuestas en un objeto
     const payload = { respuestas: respuestas };
-    return this.http.post(`${this.url}/form/section/${id_empresa}/${sectionId}`, JSON.stringify(payload), { headers });
+    // Nota: se agrega "vez" al final de la URL, ya que el backend espera /form/section/{id_empresa}/{sectionId}/{vez}
+    return this.http.post(`${this.url}/form/section/${id_empresa}/${sectionId}/${vez}`, JSON.stringify(payload), { headers });
   }
-  
+
 
   /* Obtiene las respuestas almacenadas en Redis para una empresa específica */
-  getAnwerFromDb(access_token: string, id_empresa: number): Observable<any> {
+  getAnwerFromDb(access_token: string, id_empresa: number, vez: number): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer '+ access_token
+      'Authorization': 'Bearer ' + access_token
     });
-    return this.http.get(this.url+'/getAllRespuestasFromDB/'+id_empresa, {headers});
+    return this.http.get(`${this.url}/getAllRespuestasFromDB/${id_empresa}/${vez}`, { headers });
   }
 
   /* Verifica el estado del formulario para una empresa específica */
   verificarEstadoForm(access_token: string, id_empresa: string): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer '+ access_token
+      'Authorization': 'Bearer ' + access_token
     });
-    return this.http.get(this.url+'/verificarEstadoForm/'+id_empresa, {headers});
+    return this.http.get(this.url + '/verificarEstadoForm/' + id_empresa, { headers });
   }
 }

@@ -64,6 +64,7 @@ export class EncuestaEmpresaComponent {
   acumXTecnica: number = 0;
   id_empresa: number | null = null;
   maxTrl: number = 0;
+  currentAttempt: number = 1;
 
   respuesta1: Respuesta = new Respuesta({});
   respuesta2: Respuesta = new Respuesta({});
@@ -215,6 +216,8 @@ export class EncuestaEmpresaComponent {
     this.route.paramMap.subscribe(params => {
       this.id_empresa = +params.get('id');
     });
+    this.currentAttempt = +(localStorage.getItem('currentAttempt') || '1');
+    console.log('Intento actual:', this.currentAttempt);
     this.cargarRespuestasCache();
   }
 
@@ -245,7 +248,7 @@ export class EncuestaEmpresaComponent {
   */
   goBack(): void {
     this.location.back();
-    this.alertService.successAlert('Info', 'Se guardaran las secciones que esten completas por 5 días, despues sera borrado');
+    this.alertService.successAlert('Info', 'Se guardaran las secciones que esten completas por 5 días, despues sera borrado.');
   }
 
   /*
@@ -1410,9 +1413,18 @@ export class EncuestaEmpresaComponent {
       return;
     }
 
-    // Recuperar las respuestas de Redis
-    this.respuestasService.getAnwerFromDb(this.token, this.id_empresa).subscribe(
+    // Recuperar las respuestas de bd
+    this.respuestasService.getAnwerFromDb(this.token, this.id_empresa, 1).subscribe(
       (data: any) => {
+
+        // Verificar que existan las 5 secciones
+        if (!data.seccion1 || !data.seccion2 || !data.seccion3 || !data.seccion4 || !data.seccion5) {
+          this.alertService.errorAlert('Error', 'Debe completar todas las secciones de la primera vez antes de finalizar el formulario.');
+          this.isSubmitting = false;
+          this.buttonMessage = "Enviar";
+          return;
+        }
+
         let totalRespuestas = [];
 
         // Unir todas las respuestas de las secciones
@@ -1437,7 +1449,7 @@ export class EncuestaEmpresaComponent {
           documento_empresa: this.id_empresa,
           ver_form: 1
         };
-        console.log(puntajes);
+        //console.log(puntajes);
 
         // Primero guardar puntajes y si es exitoso, proceder a guardar las respuestas
         this.puntajeService.savePuntajeSeccion(puntajes, this.id_empresa).pipe(
@@ -1483,9 +1495,9 @@ export class EncuestaEmpresaComponent {
     if (this.isSectionSaved[sectionId]) {
       return;
     }
-    console.log(respuestas);
+    console.log('Guardando sección', sectionId, 'en intento', this.currentAttempt, 'con datos:', respuestas);
 
-    this.respuestasService.saveAnswersSection(this.token, sectionId, this.id_empresa, respuestas,).subscribe(
+    this.respuestasService.saveAnswersSection(this.token, this.id_empresa, sectionId, this.currentAttempt, respuestas,).subscribe(
       data => {
         this.isSectionSaved[sectionId] = true;
       },
@@ -1499,18 +1511,31 @@ export class EncuestaEmpresaComponent {
     Carga las respuestas desde la caché y las asigna al formulario. 
     Maneja errores en la consulta de datos.
   */
-  cargarRespuestasCache() {
-    this.respuestasService.getAnwerFromDb(this.token, this.id_empresa).subscribe(
-      data => {
-        this.respuestasCache = data;
-        console.log(this.respuestasCache);
-        this.cargarRespuestasEnFormulario();
-      },
-      error => {
-        console.error(error);
-      }
-    )
-  }
+    cargarRespuestasCache() {
+      // Utiliza this.currentAttempt en vez de "1" fijo
+      console.log('current en cargar respuestas',this.currentAttempt);
+      this.respuestasService.getAnwerFromDb(this.token, this.id_empresa, this.currentAttempt)
+        .subscribe({
+          next: (data: any) => {
+            console.log(`Respuestas cache (attempt ${this.currentAttempt}):`, data);
+            this.respuestasCache = data;
+            this.cargarRespuestasEnFormulario();
+          },
+          error: (err) => {
+            // Si es un 404 y currentAttempt = 2, significa que no hay datos de segunda vez (formulario vacío)
+            if (err.status === 404 && this.currentAttempt === 2) {
+              console.log('No hay datos para la segunda vez. Se mostrará formulario vacío.');
+              this.respuestasCache = {};
+              this.cargarRespuestasEnFormulario();
+            } else {
+              console.error('Error al recuperar los datos:', err);
+            }
+          }
+        });
+    }
+    
+
+
 
   cargarRespuestasEnFormulario() {
     if (this.respuestasCache.seccion1) {

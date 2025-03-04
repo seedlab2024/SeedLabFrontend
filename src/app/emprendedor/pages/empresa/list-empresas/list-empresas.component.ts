@@ -29,6 +29,7 @@ export class ListEmpresasComponent implements OnInit {
   totalEmpresas: number = 0;
   itemsPerPage: number = 5;
   empresaId: number;
+  currentAttempt: number = 1;
 
   constructor(
     private emprendedorService: EmprendedorService,
@@ -163,10 +164,15 @@ export class ListEmpresasComponent implements OnInit {
       .subscribe(
         (response: any) => {
           let mensaje: string;
+          console.log(response);
           if (response.contador === 1) {
             mensaje = "Esta es la primera vez que completas el formulario. Asegúrate de guardar tu progreso.";
+            this.currentAttempt =1;
+            localStorage.setItem('currentAttempt', '1');  
           } else if (response.contador === 2) {
             mensaje = "Esta es la segunda vez que completas el formulario. Recuerda que este es tu último intento para realizar el formulario.";
+            this.currentAttempt = 2;
+            localStorage.setItem('currentAttempt', '2');
           }
           this.alertService.infoAlert("Indicaciones del formulario", mensaje)
             .then((result) => {
@@ -179,7 +185,7 @@ export class ListEmpresasComponent implements OnInit {
           if (error.status === 403) {
             this.alertService.errorAlert('Error', 'El formulario ya fue llenado dos veces');
             this.router.navigate(['/list-empresa']);
-          }else{
+          } else {
             console.log('Error al verificar el estado del formulario', error);
             this.alertService.errorAlert("Error", "No se pudo verificar el estado del formulario.");
           }
