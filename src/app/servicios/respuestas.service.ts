@@ -23,19 +23,23 @@ export class RespuestasService {
   }
 
   /* Guarda las respuestas de una sección específica en Redis */
-  saveAnswersRedis(access_token: string, id_empresa: number, sectionId: number, data: any): Observable<any> {
+  saveAnswersSection(access_token: string, id_empresa: number, sectionId: number, respuestas: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer '+ access_token
+      'Authorization': 'Bearer ' + access_token,
+      'Content-Type': 'application/json'
     });
-    return this.http.post(`${this.url}/form/section/${id_empresa}/${sectionId}`, JSON.stringify(data), { headers });
+    // Empaqueta las respuestas en un objeto
+    const payload = { respuestas: respuestas };
+    return this.http.post(`${this.url}/form/section/${id_empresa}/${sectionId}`, JSON.stringify(payload), { headers });
   }
+  
 
   /* Obtiene las respuestas almacenadas en Redis para una empresa específica */
-  getAnwerRedis(access_token: string, id_empresa: number): Observable<any> {
+  getAnwerFromDb(access_token: string, id_empresa: number): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+ access_token
     });
-    return this.http.get(this.url+'/getRespuestasRedis/'+id_empresa, {headers});
+    return this.http.get(this.url+'/getAllRespuestasFromDB/'+id_empresa, {headers});
   }
 
   /* Verifica el estado del formulario para una empresa específica */

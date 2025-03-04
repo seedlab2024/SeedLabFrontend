@@ -240,18 +240,18 @@ export class EncuestaEmpresaComponent {
     }
   }
 
-/*
-  Regresa a la ubicación anterior en el historial de navegación.
-*/
+  /*
+    Regresa a la ubicación anterior en el historial de navegación.
+  */
   goBack(): void {
     this.location.back();
     this.alertService.successAlert('Info', 'Se guardaran las secciones que esten completas por 5 días, despues sera borrado');
   }
 
-/*
-  Valida y procesa las respuestas de la sección 1 del formulario. 
-  Asigna valores a las respuestas, acumula puntajes y verifica la validez del formulario.
-*/
+  /*
+    Valida y procesa las respuestas de la sección 1 del formulario. 
+    Asigna valores a las respuestas, acumula puntajes y verifica la validez del formulario.
+  */
   onSubmitSeccion1(): boolean {
 
     this.id_empresa;
@@ -694,7 +694,7 @@ export class EncuestaEmpresaComponent {
     }
 
     for (let i = 15; i < 28; i++) {
-      debugger
+      //debugger
       const currentPregunta = PREGUNTAS[i];
       this.listaRespuestas2[respCounter].id_pregunta = currentPregunta.id;
       this.listaRespuestas2[respCounter].id_empresa = this.id_empresa;
@@ -1352,138 +1352,140 @@ export class EncuestaEmpresaComponent {
       if (!this.isSectionSaved[5]) {
         this.saveSection(5, this.listaRespuestas5);
       }
-    
+
       if (!this.isSubmitting) {
         // Mostrar alerta de confirmación
-        this.alertService.alertaActivarDesactivar(`¿Está seguro de enviar el formulario?`, "warning",  this.buttonMessage,).then((result) => {
+        this.alertService.alertaActivarDesactivar(`¿Está seguro de enviar el formulario?`, "warning", this.buttonMessage,).then((result) => {
           if (result.isConfirmed) {
-      
+
             // Cambiar el mensaje del botón
             this.buttonMessage = "Enviando...";
             this.isSubmitting = true;
-      
+
             // Llamamos a enviarRespuestasJson
             this.enviarRespuestasJson();
-      
+
           }
         });
       }
-      }
-    
-    
+    }
+
+
     return isValidForm;
   }
 
-/*
-  Valida y envía las respuestas del formulario. 
-  Si hay errores, muestra una alerta; de lo contrario, recupera las respuestas almacenadas, 
-  envía los datos al servidor y guarda los puntajes correspondientes.
-*/
-enviarRespuestasJson() {
-  let isFormValid = true;
-  
-  // Validación de secciones
-  let seccionesInvalidas: string[] = [];
+  /*
+    Valida y envía las respuestas del formulario. 
+    Si hay errores, muestra una alerta; de lo contrario, recupera las respuestas almacenadas, 
+    envía los datos al servidor y guarda los puntajes correspondientes.
+  */
+  enviarRespuestasJson() {
+    let isFormValid = true;
 
-  // Validación de secciones
-  if (!this.onSubmitSeccion1()) {
-    seccionesInvalidas.push('Sección 1');
-  }
-  if (!this.onSubmitSeccion2()) {
-    seccionesInvalidas.push('Sección 2');
-  }
-  if (!this.onSubmitSeccion3()) {
-    seccionesInvalidas.push('Sección 3');
-  }
-  if (!this.onSubmitSeccion4()) {
-    seccionesInvalidas.push('Sección 4');
-  }
-  if (!this.onSubmitSeccion5()) {
-    seccionesInvalidas.push('Sección 5');
-  }
+    // Validación de secciones
+    let seccionesInvalidas: string[] = [];
 
-  // Si hay alguna sección inválida
-  if (seccionesInvalidas.length > 0) {
-    // Crear el mensaje de alerta con las secciones inválidas
-    const mensajeError = `El formulario contiene errores en las siguientes secciones: ${seccionesInvalidas.join(', ')}. Revise nuevamente sus respuestas.`;
-    this.alertService.errorAlert('Error', mensajeError);
-    return;
-  }
+    // Validación de secciones
+    if (!this.onSubmitSeccion1()) {
+      seccionesInvalidas.push('Sección 1');
+    }
+    if (!this.onSubmitSeccion2()) {
+      seccionesInvalidas.push('Sección 2');
+    }
+    if (!this.onSubmitSeccion3()) {
+      seccionesInvalidas.push('Sección 3');
+    }
+    if (!this.onSubmitSeccion4()) {
+      seccionesInvalidas.push('Sección 4');
+    }
+    if (!this.onSubmitSeccion5()) {
+      seccionesInvalidas.push('Sección 5');
+    }
 
-  // Recuperar las respuestas de Redis
-  this.respuestasService.getAnwerRedis(this.token, this.id_empresa).subscribe(
-    (redisData: any) => {
-      let totalRespuestas = [];
+    // Si hay alguna sección inválida
+    if (seccionesInvalidas.length > 0) {
+      // Crear el mensaje de alerta con las secciones inválidas
+      const mensajeError = `El formulario contiene errores en las siguientes secciones: ${seccionesInvalidas.join(', ')}. Revise nuevamente sus respuestas.`;
+      this.alertService.errorAlert('Error', mensajeError);
+      return;
+    }
 
-      // Unir todas las respuestas de las secciones
-      if (redisData.seccion1) totalRespuestas = totalRespuestas.concat(redisData.seccion1);
-      if (redisData.seccion2) totalRespuestas = totalRespuestas.concat(redisData.seccion2);
-      if (redisData.seccion3) totalRespuestas = totalRespuestas.concat(redisData.seccion3);
-      if (redisData.seccion4) totalRespuestas = totalRespuestas.concat(redisData.seccion4);
-      if (redisData.seccion5) totalRespuestas = totalRespuestas.concat(redisData.seccion5);
-      
-      const payload = {
-        respuestas: totalRespuestas,
-        id_empresa: this.id_empresa
-      };
-      debugger
-      const puntajes = {
-        info_general: this.acumXSeccion1,
-        info_financiera: this.acumXSeccion2,
-        info_mercado: this.acumXSeccion3,
-        info_trl: this.maxTrl,
-        info_tecnica: this.acumXTecnica,
-        documento_empresa: this.id_empresa,
-        ver_form: 1
-      };
-      console.log(puntajes);
+    // Recuperar las respuestas de Redis
+    this.respuestasService.getAnwerFromDb(this.token, this.id_empresa).subscribe(
+      (data: any) => {
+        let totalRespuestas = [];
 
-      // Primero guardar puntajes y si es exitoso, proceder a guardar las respuestas
-    this.puntajeService.savePuntajeSeccion(puntajes, this.id_empresa).pipe(
-      switchMap(() => {
-        // Si guardar puntajes es exitoso, proceder a guardar las respuestas
-        return this.respuestasService.saveAnswers(this.token, payload);
-      })
-    ).subscribe({
-      next: () => {
-        // Ambos guardados han sido exitosos
-        this.alertService.successAlert('Éxito', 'Respuestas y puntajes guardados correctamente.');
+        // Unir todas las respuestas de las secciones
+        if (data.seccion1) totalRespuestas = totalRespuestas.concat(data.seccion1);
+        if (data.seccion2) totalRespuestas = totalRespuestas.concat(data.seccion2);
+        if (data.seccion3) totalRespuestas = totalRespuestas.concat(data.seccion3);
+        if (data.seccion4) totalRespuestas = totalRespuestas.concat(data.seccion4);
+        if (data.seccion5) totalRespuestas = totalRespuestas.concat(data.seccion5);
 
-        // Cambiar el mensaje del botón a "Redirigiendo..." y esperar 3 segundos antes de redirigir
-        this.buttonMessage = "Redirigiendo...";
-        setTimeout(() => {
-          this.isSubmitting = false;
-          this.router.navigate(['/list-empresa']);
-        }, 3000);
+        const payload = {
+          respuestas: totalRespuestas,
+          id_empresa: this.id_empresa
+        };
+        console.log('respuestas', payload);
+        //debugger
+        const puntajes = {
+          info_general: this.acumXSeccion1,
+          info_financiera: this.acumXSeccion2,
+          info_mercado: this.acumXSeccion3,
+          info_trl: this.maxTrl,
+          info_tecnica: this.acumXTecnica,
+          documento_empresa: this.id_empresa,
+          ver_form: 1
+        };
+        console.log(puntajes);
+
+        // Primero guardar puntajes y si es exitoso, proceder a guardar las respuestas
+        this.puntajeService.savePuntajeSeccion(puntajes, this.id_empresa).pipe(
+          switchMap(() => {
+            // Si guardar puntajes es exitoso, proceder a guardar las respuestas
+            return this.respuestasService.saveAnswers(this.token, payload);
+          })
+        ).subscribe({
+          next: () => {
+            // Ambos guardados han sido exitosos
+            this.alertService.successAlert('Éxito', 'Respuestas y puntajes guardados correctamente.');
+
+            // Cambiar el mensaje del botón a "Redirigiendo..." y esperar 3 segundos antes de redirigir
+            this.buttonMessage = "Redirigiendo...";
+            setTimeout(() => {
+              this.isSubmitting = false;
+              this.router.navigate(['/list-empresa']);
+            }, 3000);
+          },
+          error: (err) => {
+            // Ocurrió un error en alguna de las solicitudes
+            console.error(err);
+            this.alertService.errorAlert('Error', 'No se pudieron guardar los datos. Inténtalo nuevamente.');
+            this.isSubmitting = false; // Restaurar el estado del botón
+            this.buttonMessage = "Enviar";
+          }
+        });
       },
-      error: (err) => {
-        // Ocurrió un error en alguna de las solicitudes
-        console.error(err);
-        this.alertService.errorAlert('Error', 'No se pudieron guardar los datos. Inténtalo nuevamente.');
+      error => {
+        console.error('Error al recuperar los datos:', error);
+        this.alertService.errorAlert('Error', 'No se pudieron recuperar los datos guardados.');
         this.isSubmitting = false; // Restaurar el estado del botón
         this.buttonMessage = "Enviar";
       }
-    });
-  },
-    error => {
-      console.error('Error al recuperar los datos de Redis:', error);
-      this.alertService.errorAlert('Error', 'No se pudieron recuperar los datos guardados.');
-      this.isSubmitting = false; // Restaurar el estado del botón
-      this.buttonMessage = "Enviar";
-    }
-  );
-}
+    );
+  }
 
-/*
-  Guarda las respuestas de una sección si no se han guardado previamente. 
-  Actualiza el estado de la sección como guardada tras una respuesta exitosa.
-*/
+  /*
+    Guarda las respuestas de una sección si no se han guardado previamente. 
+    Actualiza el estado de la sección como guardada tras una respuesta exitosa.
+  */
   saveSection(sectionId: number, respuestas: any[]): void {
     if (this.isSectionSaved[sectionId]) {
       return;
     }
+    console.log(respuestas);
 
-    this.respuestasService.saveAnswersRedis(this.token, sectionId, this.id_empresa, respuestas).subscribe(
+    this.respuestasService.saveAnswersSection(this.token, sectionId, this.id_empresa, respuestas,).subscribe(
       data => {
         this.isSectionSaved[sectionId] = true;
       },
@@ -1493,12 +1495,12 @@ enviarRespuestasJson() {
     );
   }
 
-/*
-  Carga las respuestas desde la caché y las asigna al formulario. 
-  Maneja errores en la consulta de datos.
-*/
+  /*
+    Carga las respuestas desde la caché y las asigna al formulario. 
+    Maneja errores en la consulta de datos.
+  */
   cargarRespuestasCache() {
-    this.respuestasService.getAnwerRedis(this.token, this.id_empresa).subscribe(
+    this.respuestasService.getAnwerFromDb(this.token, this.id_empresa).subscribe(
       data => {
         this.respuestasCache = data;
         console.log(this.respuestasCache);
@@ -1666,10 +1668,10 @@ enviarRespuestasJson() {
 
 
 
-/*
-  Actualiza el porcentaje de progreso contando las preguntas respondidas 
-  y calculando el porcentaje respecto al total de preguntas.
-*/
+  /*
+    Actualiza el porcentaje de progreso contando las preguntas respondidas 
+    y calculando el porcentaje respecto al total de preguntas.
+  */
   updateProgress() {
     let answeredQuestions = 0;
     const totalQuestions = 100;
@@ -1683,17 +1685,17 @@ enviarRespuestasJson() {
     this.progressPercentage = Math.round((answeredQuestions / totalQuestions) * 100);
   }
 
-/*
-  Carga la siguiente sección del formulario.
-*/
+  /*
+    Carga la siguiente sección del formulario.
+  */
   loadNextSection(): void {
     this.section++;
   }
 
-/*
-  Avanza a la siguiente subsección o a la siguiente sección si ya está en la última subsección. 
-  Actualiza el progreso del formulario.
-*/
+  /*
+    Avanza a la siguiente subsección o a la siguiente sección si ya está en la última subsección. 
+    Actualiza el progreso del formulario.
+  */
   next() {
     if (this.currentSubSectionIndex < this.subSectionPerSection[this.currentIndex] - 1) {
       this.currentSubSectionIndex++;
@@ -1724,13 +1726,13 @@ enviarRespuestasJson() {
 
   }
 
-/*
-  Navega a una sección específica y reinicia el índice de la subsección a 0. 
-  Actualiza el progreso del formulario.
-*/
+  /*
+    Navega a una sección específica y reinicia el índice de la subsección a 0. 
+    Actualiza el progreso del formulario.
+  */
   goToSection(index: number): void {
     this.currentIndex = index;
-    this.currentSubSectionIndex = 0; 
+    this.currentSubSectionIndex = 0;
     this.updateProgress();
   }
 }
