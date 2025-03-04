@@ -217,7 +217,7 @@ export class EncuestaEmpresaComponent {
       this.id_empresa = +params.get('id');
     });
     this.currentAttempt = +(localStorage.getItem('currentAttempt') || '1');
-    console.log('Intento actual:', this.currentAttempt);
+    //console.log('Intento actual:', this.currentAttempt);
     this.cargarRespuestasCache();
   }
 
@@ -831,7 +831,7 @@ export class EncuestaEmpresaComponent {
       }
     }
     this.next();
-    console.log('acumXSeccion2:', this.acumXSeccion2);
+    //console.log('acumXSeccion2:', this.acumXSeccion2);
     this.saveSection(2, this.listaRespuestas2);
     return isValidForm;
 
@@ -1438,7 +1438,7 @@ export class EncuestaEmpresaComponent {
           respuestas: totalRespuestas,
           id_empresa: this.id_empresa
         };
-        console.log('respuestas', payload);
+        //console.log('respuestas', payload);
         //debugger
         const puntajes = {
           info_general: this.acumXSeccion1,
@@ -1495,7 +1495,7 @@ export class EncuestaEmpresaComponent {
     if (this.isSectionSaved[sectionId]) {
       return;
     }
-    console.log('Guardando sección', sectionId, 'en intento', this.currentAttempt, 'con datos:', respuestas);
+    //console.log('Guardando sección', sectionId, 'en intento', this.currentAttempt, 'con datos:', respuestas);
 
     this.respuestasService.saveAnswersSection(this.token, this.id_empresa, sectionId, this.currentAttempt, respuestas,).subscribe(
       data => {
@@ -1513,18 +1513,18 @@ export class EncuestaEmpresaComponent {
   */
     cargarRespuestasCache() {
       // Utiliza this.currentAttempt en vez de "1" fijo
-      console.log('current en cargar respuestas',this.currentAttempt);
+      //console.log('current en cargar respuestas',this.currentAttempt);
       this.respuestasService.getAnwerFromDb(this.token, this.id_empresa, this.currentAttempt)
         .subscribe({
           next: (data: any) => {
-            console.log(`Respuestas cache (attempt ${this.currentAttempt}):`, data);
+            //console.log(`Respuestas cache (attempt ${this.currentAttempt}):`, data);
             this.respuestasCache = data;
             this.cargarRespuestasEnFormulario();
           },
           error: (err) => {
             // Si es un 404 y currentAttempt = 2, significa que no hay datos de segunda vez (formulario vacío)
             if (err.status === 404 && this.currentAttempt === 2) {
-              console.log('No hay datos para la segunda vez. Se mostrará formulario vacío.');
+              //console.log('No hay datos para la segunda vez. Se mostrará formulario vacío.');
               this.respuestasCache = {};
               this.cargarRespuestasEnFormulario();
             } else {
