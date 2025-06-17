@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./asesor/asesor.module').then(m => m.AsesorModule)
   },
 
-  //Emprendedor y empresa
+  // Emprendedor y empresa
   {
     path: 'emprendedor',
     loadChildren: () => import('./emprendedor/emprendedor.module').then(m => m.EmprendedorModule)

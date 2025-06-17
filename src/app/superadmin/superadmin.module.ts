@@ -65,10 +65,10 @@ import { ListActividadesComponent } from './pages/ruta/list-actividades/list-act
     SharedModule,
     ColorPickerModule,
     MatIconModule,
-    RouterModule,
+    //RouterModule,
     NgChartsModule,
     MatTooltipModule,
-    SharedModule
+    //SharedModule
   ]
 })
 export class SuperadminModule { }

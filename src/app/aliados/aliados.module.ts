@@ -37,6 +37,7 @@ import { ListActividadesComponent } from './pages/list-actividades/list-activida
 
 
 
+
 @NgModule({
   declarations: [
     ListAsesoresComponent,
@@ -53,6 +54,7 @@ import { ListActividadesComponent } from './pages/list-actividades/list-activida
     SafePipe,
     ListRutaComponent,
     ListActividadesComponent,
+
   ],
   imports: [
     CommonModule,

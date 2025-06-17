@@ -200,7 +200,7 @@ export class ListActividadesComponent {
         }
       });
     }else{
-      this.router.navigate(['actnivlec'], { queryParams: { id_actividad: ActividadId, id_ruta : rutaId,  isEditing: isEditing } });
+      this.router.navigate(['/superadmin/rutas/actnivlec'], { queryParams: { id_actividad: ActividadId, id_ruta : rutaId,  isEditing: isEditing } });
     }
   }
 
@@ -209,7 +209,7 @@ export class ListActividadesComponent {
     agregar nuevas actividades a una ruta específica de manera.
   */
   agregarActividadRuta(rutaId: number):void {
-    this.router.navigate(['actnivlec'], {
+    this.router.navigate(['/superadmin/rutas/actnivlec'], {
       queryParams: { id_ruta : rutaId},
     });
   }

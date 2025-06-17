@@ -202,7 +202,7 @@ export class ListRutasComponent implements OnInit {
           }
         });
     } else {
-      this.router.navigate(['list-actividades'], {
+      this.router.navigate(['/superadmin/rutas/list-actividades'], {
         queryParams: { id_ruta: rutaId },
       });
     }

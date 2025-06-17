@@ -110,7 +110,7 @@ export class ListAliadosComponent implements OnInit {
   Direcciona a la pagina para editar el aliado
   */
   editarAliado(id: any): void {
-    this.router.navigateByUrl("edit-aliados/" + id);
+    this.router.navigateByUrl("superadmin/aliados/edit-aliados/" + id);
   }
 
   /*

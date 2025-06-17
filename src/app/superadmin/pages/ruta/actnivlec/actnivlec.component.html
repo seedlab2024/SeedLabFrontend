@@ -11,6 +11,9 @@
         <app-header [title] [subtitle]="isEditing ? 'Editar Actividad' : 'Agregar Actividad'"></app-header>
     </header>
 
+    <!-- Breadcrumbs -->
+    <app-breadcrumbs></app-breadcrumbs>
+
     <div *ngIf="isLoading" class="loading-overlay">
         <div class="spinner "></div>
     </div>

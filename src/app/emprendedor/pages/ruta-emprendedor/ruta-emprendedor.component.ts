@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RutaService } from '../../../servicios/rutas.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ruta } from '../../../Modelos/ruta.modelo';
 import { FormBuilder } from '@angular/forms';
 
@@ -46,6 +46,7 @@ export class RutaEmprendedorComponent implements OnInit {
     private rutaService: RutaService,
     private router: Router,
     private fb: FormBuilder,
+    private route: ActivatedRoute
   ) {}
 
 /* Inicializa con esas funciones al cargar la pagina */
@@ -221,8 +222,25 @@ export class RutaEmprendedorComponent implements OnInit {
   /*
     Navega al módulo de la actividad seleccionada.
   */
-  handleIrAModulo(actividad: any) {
-    this.router.navigate(['curso-ruta-emprendedor'], { state: { actividad: actividad } });
+   handleIrAModulo(actividad: any) {
+    let targetRoute = '';
+    
+    // Determinamos la ruta de destino según el contexto actual
+    if (this.router.url.includes('/superadmin')) {
+      // Si estamos en el contexto del superadmin
+      targetRoute = '../curso-ruta-superadmin'; 
+    } else {
+      // Si estamos en el contexto del emprendedor (o cualquier otro)
+      targetRoute = '../curso-ruta-emprendedor';
+    }
+
+    this.router.navigate([targetRoute], { 
+      relativeTo: this.route, // ¡La clave es navegar relativo a la ruta actual!
+      state: { actividad: actividad } 
+    });
+
+    // Cierra el modal después de navegar
+    this.closeModal();
   }
 
   /*

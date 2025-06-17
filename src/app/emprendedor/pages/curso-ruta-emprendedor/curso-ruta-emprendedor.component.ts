@@ -290,53 +290,23 @@ export class CursoRutaEmprendedorComponent {
 
 
   goToNextContent() {
-    if (this.showActivityDescription) {
-      this.showActivityDescription = false;
-      this.currentNivelIndex = 0;
-      this.currentLeccionIndex = 0;
+    const currentNivel = this.niveles[this.currentNivelIndex];
+    const currentLeccion = currentNivel.lecciones[this.currentLeccionIndex];
+    
+    if (this.currentContenidoIndex < currentLeccion.contenido_lecciones.length - 1) {
+      this.currentContenidoIndex++;
+    } else if (this.currentLeccionIndex < currentNivel.lecciones.length - 1) {
       this.currentContenidoIndex = 0;
-    } else {
-      const currentNivel = this.niveles[this.currentNivelIndex];
-      const currentLeccion = currentNivel.lecciones[this.currentLeccionIndex];
-      const nextContenidoIndex = this.currentContenidoIndex + 1;
-
-      if (nextContenidoIndex < currentLeccion.contenido_lecciones.length) {
-        this.currentContenidoIndex = nextContenidoIndex;
-      } else {
-        const lastContentId = currentLeccion.contenido_lecciones[currentLeccion.contenido_lecciones.length - 1].id;
-        if (lastContentId === this.ultimoContenidoId) {
-          if (this.currentRolId != 1 && this.currentRolId != 2) {
-            this.alertService.alertainformativa('¡Felicitaciones por haber completado la ruta! Ahora es momento de volver a llenar la encuesta de maduración. Esta te permitirá evaluar cuánto has avanzado con tu emprendimiento y cómo han influido los conocimientos que has adquirido en este tiempo. Es una gran oportunidad para reflexionar sobre tu progreso y seguir mejorando. ¡Sigue adelante!', 'success').then((result) => {
-              if (result.isConfirmed) {
-                this.router.navigate(['list-empresa']);
-              }
-            });
-          } else {
-            this.router.navigate(['ruta']);
-          }
-          return;
-        }
-
-        this.currentLeccionIndex++;
-        if (this.currentLeccionIndex >= currentNivel.lecciones.length) {
-          this.currentLeccionIndex = 0;
-          this.currentNivelIndex++;
-          if (this.currentNivelIndex >= this.niveles.length) {
-            this.updateBotonAsesoria(); // Llamamos a la nueva función aquí
-            this.router.navigate(['ruta']);
-            return;
-          }
-        }
-        this.currentContenidoIndex = 0;
-      }
+      this.currentLeccionIndex++;
+    } else if (this.currentNivelIndex < this.niveles.length - 1) {
+      this.currentContenidoIndex = 0;
+      this.currentLeccionIndex = 0;
+      this.currentNivelIndex++;
     }
-    const newCurrentNivel = this.niveles[this.currentNivelIndex];
-    const newCurrentLeccion = newCurrentNivel.lecciones[this.currentLeccionIndex];
-    const newCurrentContenido = newCurrentLeccion.contenido_lecciones[this.currentContenidoIndex];
-    this.closeAllExceptSelected(this.currentNivelIndex, this.currentLeccionIndex, newCurrentContenido.id);
-    this.selectedContenido = newCurrentContenido;
-    this.updateSelectedContent();
-    this.updateBotonAsesoria(); // Llamamos a la nueva función aquí también
+
+    // Actualizamos el contenido visible
+    this.updateSelectedContent(); 
+    this.expandCurrentPath();
   }
 
   /*
@@ -368,24 +338,63 @@ export class CursoRutaEmprendedorComponent {
   /*
     Activa el botón de asesoría si se está en el último contenido de la última lección.
   */
-  boton() {
-    const currentNivel = this.niveles[this.currentNivelIndex];
-    const currentLeccion = currentNivel.lecciones[this.currentLeccionIndex];
-    if (
+
+   isLastContent(): boolean {
+    if (!this.niveles?.length || this.currentNivelIndex >= this.niveles.length) {
+      return false; // No hay niveles o el índice está fuera de rango
+    }
+    const nivelActual = this.niveles[this.currentNivelIndex];
+
+    if (!nivelActual.lecciones?.length || this.currentLeccionIndex >= nivelActual.lecciones.length) {
+      return false; // No hay lecciones o el índice está fuera de rango
+    }
+    const leccionActual = nivelActual.lecciones[this.currentLeccionIndex];
+
+    if (!leccionActual.contenido_lecciones?.length) {
+      return false; // No hay contenido en la lección
+    }
+
+    // Compara si los índices actuales son los últimos posibles
+    return (
       this.currentNivelIndex === this.niveles.length - 1 &&
-      this.currentLeccionIndex === currentNivel.lecciones.length - 1 &&
-      this.currentContenidoIndex === currentLeccion.contenido_lecciones.length - 1
-    ) {
-      this.botonAsesoria = true;
+      this.currentLeccionIndex === nivelActual.lecciones.length - 1 &&
+      this.currentContenidoIndex === leccionActual.contenido_lecciones.length - 1
+    );
+  }
+
+  /**
+   * Función central que se llama al hacer clic en el botón "Siguiente" o "Finalizar".
+   */
+  handleNextOrFinish() {
+    if (this.isLastContent()) {
+      // Estamos en el último contenido, así que ejecutamos la lógica de finalizar.
+      this.finalizarCurso();
+    } else {
+      // Todavía hay contenido, así que navegamos al siguiente.
+      // Reutilizamos tu función goToNextContent, que ya hace bien este trabajo.
+      this.goToNextContent();
     }
   }
 
-  /*
-    Maneja el clic en el botón para avanzar al siguiente contenido.
-  */
-  onNextContentClick() {
-    this.goToNextContent();
+  finalizarCurso() {
+    console.log("¡Curso finalizado!");
+    this.botonAsesoria = true; // Activa el botón de asesoría si es necesario
+
+    // Lógica de la alerta y redirección
+    if (this.currentRolId != 1 && this.currentRolId != 2) {
+      this.alertService.alertainformativa('¡Felicitaciones por haber completado la ruta! Ahora es momento de volver a llenar la encuesta de maduración...', 'success')
+        .then((result) => {
+          if (result.isConfirmed) {
+            // Navega a donde corresponda, por ejemplo, la encuesta de maduración
+            this.router.navigate(['/emprendedor/list-empresa']); // Asegúrate de que esta ruta sea correcta
+          }
+        });
+    } else {
+      // Para superadmin/orientador, simplemente vuelve a la lista de rutas
+      this.router.navigate(['/superadmin']); // Asegúrate de que esta ruta sea correcta
+    }
   }
+  
 
   /*
     Expande todos los niveles hasta el índice del nivel actual.

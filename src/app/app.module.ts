@@ -50,12 +50,12 @@ import { AuthInterceptor } from './auth.interceptor';
     MatToolbarModule,
     // ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    AuthModule,
-    AliadosModule,
-    AsesorModule,
-    EmprendedorModule,
-    SuperadminModule,
-    OrientadorModule,
+    // AuthModule,
+    // AliadosModule,
+    // AsesorModule,
+    // EmprendedorModule,
+    // SuperadminModule,
+    // OrientadorModule,
 
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')

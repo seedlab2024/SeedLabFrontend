@@ -6,6 +6,9 @@
             <app-header [title] [subtitle]="'Perfil'"></app-header>
         </header>
 
+        <!-- Breadcrumbs-->
+        <app-breadcrumbs></app-breadcrumbs>
+
         <div class="flex justify-center">
             <div class="spinner " *ngIf="isLoading"></div>
         </div>
@@ -162,8 +165,9 @@
                         <h5 class="mt-6 mb-4 text-xl font-bold text-center font-poppins">Información de Contacto</h5>
 
                         <label for="correo" class="block mb-2">Correo Electrónico</label>
-                        <input type="text" id="correo" formControlName="email" [readonly]="blockedInputsCORREO" [ngStyle]="{'cursor': blockedInputsCORREO ? 'not-allowed' : 'auto'}"
-                            class="w-full h-12 p-2 mb-2 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200"/>
+                        <input type="text" id="correo" formControlName="email" [readonly]="blockedInputsCORREO"
+                            [ngStyle]="{'cursor': blockedInputsCORREO ? 'not-allowed' : 'auto'}"
+                            class="w-full h-12 p-2 mb-2 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200" />
 
                         <label for="celular" class="block mt-4 mb-2">Celular</label>
                         <input type="number" id="celular" formControlName="celular" [readonly]="blockedInputs"
@@ -171,9 +175,11 @@
                         <div *ngIf="f['celular'].invalid && (f['celular'].dirty || f['celular'].touched)"
                             class="inline-block p-1 mt-2 mb-1 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
                             <div *ngIf="f.celular.errors.required">Este campo es requerido *</div>
-                            <div *ngIf="f.celular.errors.maxlength">El número de celular no debe tener más de 10 dígitos</div>
+                            <div *ngIf="f.celular.errors.maxlength">El número de celular no debe tener más de 10 dígitos
+                            </div>
                             <div *ngIf="f.celular.errors.hasLetters">El número de celular no puede contener letras</div>
-                            <div *ngIf="f.celular.errors.lengthError">El número de celular debe tener entre 5 y 10 dígitos *</div>
+                            <div *ngIf="f.celular.errors.lengthError">El número de celular debe tener entre 5 y 10
+                                dígitos *</div>
                         </div>
                     </div>
                     <div class="w-20"></div>
