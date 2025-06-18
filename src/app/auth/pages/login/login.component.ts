@@ -65,16 +65,16 @@ export class LoginComponent implements OnInit {
                         this.router.navigate(['/superadmin/dashboard-superadmin']);
                         break;
                     case '2':
-                        this.router.navigate(['dashboard-orientador']);
+                        this.router.navigate(['/orientador/dashboard-orientador']);
                         break;
                     case '3':
-                        this.router.navigate(['dashboard-aliado']);
+                        this.router.navigate(['/aliados/dashboard-aliado']);
                         break;
                     case '4':
-                        this.router.navigate(['asesorias']);
+                        this.router.navigate(['/asesor/asesorias']);
                         break;
                     case '5':
-                        this.router.navigate(['list-empresa/']);
+                        this.router.navigate(['/emprendedor/list-empresa/']);
                         break;
                     default:
                         this.router.navigate(['home']);

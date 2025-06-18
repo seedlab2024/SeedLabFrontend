@@ -6,12 +6,15 @@
             <app-header [title] [subtitle]="'Perfil'"></app-header>
         </header>
 
+        <!-- Breadcrumbs-->
+        <app-breadcrumbs></app-breadcrumbs>
+
         <div class="flex justify-center">
             <div class="spinner " *ngIf="isLoading"></div>
         </div>
 
-        <div
-            class="w-full rounded-lg bg-[#FAFAFA] max-md:mt-20 max-[600px]:px-2 max-[600px]:py-2  min-[851px]:px-16" *ngIf="!isLoading">
+        <div class="w-full rounded-lg bg-[#FAFAFA] max-md:mt-20 max-[600px]:px-2 max-[600px]:py-2  min-[851px]:px-16"
+            *ngIf="!isLoading">
 
             <!-- Contenido -->
             <div class="min-[860px]:flex items-center w-full">
@@ -36,11 +39,8 @@
                                 </i>
                             </button>
                             <div class="absolute top-0 right-0 mt-2 mr-2">
-                                <fa-icon 
-                                    [icon]="falupa" 
-                                    class="text-sm cursor-pointer"
-                                    [matTooltip]="'La imagen no debe pesar mas de 5MB.'"
-                                    matTooltipPosition="right"
+                                <fa-icon [icon]="falupa" class="text-sm cursor-pointer"
+                                    [matTooltip]="'La imagen no debe pesar mas de 5MB.'" matTooltipPosition="right"
                                     style="color: #adb7c7;">
                                 </fa-icon>
                             </div>
@@ -135,9 +135,8 @@
                         <label for="fechaNacimiento" class="block mb-2">Fecha de Nacimiento</label>
                         <input type="date" id="fecha_nac" formControlName="fecha_nac" [readonly]="blockedInputs"
                             class="w-full h-12 p-2 mb-2 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200" />
-                            <div *ngIf="f['fecha_nac'].invalid && (f['fecha_nac'].dirty || f['fecha_nac'].touched)"
-                            class="inline-block p-2 mt-2 text-sm text-red-500 rounded-lg bg-red-50"
-                            role="alert">
+                        <div *ngIf="f['fecha_nac'].invalid && (f['fecha_nac'].dirty || f['fecha_nac'].touched)"
+                            class="inline-block p-2 mt-2 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
                             <div *ngIf="f.fecha_nac.errors.required">Este campo es requerido *</div>
                             <div *ngIf="f.fecha_nac.errors.futureDate">La fecha no es válida*</div>
                             <div *ngIf="f.fecha_nac.errors.tooOld">La fecha no es válida*</div>
@@ -146,12 +145,12 @@
 
                         <div class="flex items-center">
                             <label for="password" class="block mt-4 mb-2">Contraseña</label>
-                        <fa-icon [icon]="falupa" class="mt-2 ml-1 text-sm transform right-2" mat-raised-button
-                            matTooltip="Puedes cambiar la contraseña si lo deseas. Si la dejas en blanco, la contraseña actual permanecerá sin cambios."
-                            matTooltipPosition="right" style="color: #adb7c7;">
-                        </fa-icon>
+                            <fa-icon [icon]="falupa" class="mt-2 ml-1 text-sm transform right-2" mat-raised-button
+                                matTooltip="Puedes cambiar la contraseña si lo deseas. Si la dejas en blanco, la contraseña actual permanecerá sin cambios."
+                                matTooltipPosition="right" style="color: #adb7c7;">
+                            </fa-icon>
                         </div>
-                        
+
                         <div class="relative mb-2">
                             <input [type]="hide ? 'password' : 'text'" id="contrasena" formControlName="password"
                                 [disabled]="blockedInputs" [readonly]="blockedInputs"
@@ -172,10 +171,11 @@
                         <h5 class="mt-6 mb-4 text-xl font-bold text-center font-poppins ">Información de Contacto</h5>
 
                         <label for="correo" class="block mb-2">Correo Electrónico</label>
-                        <input type="text" id="correo" formControlName="email" [readonly]="blockedInputsCORREO" [ngStyle]="{'cursor': blockedInputsCORREO ? 'not-allowed' : 'auto'}" 
+                        <input type="text" id="correo" formControlName="email" [readonly]="blockedInputsCORREO"
+                            [ngStyle]="{'cursor': blockedInputsCORREO ? 'not-allowed' : 'auto'}"
                             [matTooltip]="'No puedes editar el corrreo.'"
                             class="w-full h-12 p-2 mb-2 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200">
-                        
+
                         <label for="celular" class="block mt-4 mb-2">Celular</label>
                         <input type="text" id="celular" formControlName="celular" [readonly]="blockedInputs"
                             class="w-full h-12 p-2 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
@@ -183,9 +183,12 @@
                         <div *ngIf="f['celular'].invalid && (f['celular'].dirty || f['celular'].touched)"
                             class="inline-block p-2 mt-2 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
                             <div *ngIf="f.celular.errors.required">Este campo es requerido*</div>
-                            <div *ngIf="f.celular.errors.maxlength">El número de celular no debe tener más de 10 dígitos*</div>
-                            <div *ngIf="f.celular.errors.hasLetters">El número de celular no puede contener letras*</div>
-                            <div *ngIf="f.celular.errors.lengthError">El número de celular debe tener entre 5 y 10 dígitos *</div>
+                            <div *ngIf="f.celular.errors.maxlength">El número de celular no debe tener más de 10
+                                dígitos*</div>
+                            <div *ngIf="f.celular.errors.hasLetters">El número de celular no puede contener letras*
+                            </div>
+                            <div *ngIf="f.celular.errors.lengthError">El número de celular debe tener entre 5 y 10
+                                dígitos *</div>
                         </div>
                     </div>
                     <div class="w-20"></div>
@@ -204,16 +207,17 @@
 
 
                         <label for="id_municipio" class="block mt-4 mb-2">Municipio</label>
-                            <select id="id_municipio" name="id_municipio" formControlName="id_municipio"
-                                [disabled]="blockedInputs"
-                                class="w-full h-12 p-2 mb-2 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200">
-                                <option *ngFor="let municipio of listMunicipios" [value]="municipio.id">
-                                    {{ municipio.nombre }}
-                                </option>
-                            </select>
-                            <div *ngIf="f['id_municipio'].errors" class="inline-block p-1 mt-2 mb-1 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
-                                <div *ngIf="f['id_municipio'].errors['required']">Este campo es requerido *</div>
-                            </div>
+                        <select id="id_municipio" name="id_municipio" formControlName="id_municipio"
+                            [disabled]="blockedInputs"
+                            class="w-full h-12 p-2 mb-2 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200">
+                            <option *ngFor="let municipio of listMunicipios" [value]="municipio.id">
+                                {{ municipio.nombre }}
+                            </option>
+                        </select>
+                        <div *ngIf="f['id_municipio'].errors"
+                            class="inline-block p-1 mt-2 mb-1 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
+                            <div *ngIf="f['id_municipio'].errors['required']">Este campo es requerido *</div>
+                        </div>
 
                         <label for="direccion" class="block mt-4 mb-2">Dirección</label>
                         <input type="text" id="direccion" formControlName="direccion" [readonly]="blockedInputs"
@@ -231,14 +235,15 @@
                     (click)="toggleEditButtonn()">
                     Cancelar
                 </button>
-                <button id="guardarBtn" type="submit" [disabled]="isSubmitting" class="px-4 py-2 italic font-bold text-white rounded-full bg-amber-500"
-                    *ngIf="!blockedInputs" (click)="updateOrientador()">
+                <button id="guardarBtn" type="submit" [disabled]="isSubmitting"
+                    class="px-4 py-2 italic font-bold text-white rounded-full bg-amber-500" *ngIf="!blockedInputs"
+                    (click)="updateOrientador()">
                     <span *ngIf="!isSubmitting">{{ buttonMessage }}</span>
                     <span *ngIf="isSubmitting" class="flex items-center">
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                stroke-width="4"></circle>
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
                             <path class="opacity-75" fill="currentColor"
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                             </path>

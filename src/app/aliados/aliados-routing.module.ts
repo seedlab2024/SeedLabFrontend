@@ -8,7 +8,6 @@ import { PerfilAliadoComponent } from './pages/perfil-aliado/perfil-aliado.compo
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { ModalAddAsesoresComponent } from './pages/add-asesores/modal-add-asesores.component';
 import { TodosLosAliadosComponent } from './pages/todos-los-aliados/todos-los-aliados.component';
-import { data } from 'jquery';
 import { RutaAliadoComponent } from './pages/ruta-aliado/ruta-aliado.component';
 import { ListRutaComponent } from './pages/list-ruta/list-ruta.component';
 import { ListActividadesComponent } from './pages/list-actividades/list-actividades.component';
@@ -17,17 +16,24 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      {path: 'dashboard-aliado', component: DashboardComponent, data: {title: 'Dashboard', showInMenu: true, icon: 'fa-solid fa-chart-pie', breadcrums:['Dashboard']}},
-      {path: 'list-asesores', component:ListAsesoresComponent, data: {title: 'Asesores', showInMenu: true, icon: 'fa-solid fa-users', breadcrums:['Asesores']}},
-      {path: 'list-asesorias', component: AsesoriaAliadoComponent, data: {title: 'Asesorias', showInMenu: true, icon: 'fa-solid fa-users-gear', breadcrums:['Asesorias']}},
-      {path: 'Reportes-aliado', component:ReportesComponent, data:{title: 'Reportes', showInMenu: true, icon: 'fa-regular fa-file-lines', breadcrums:['Reportes']}},
-      {path: 'add-asesor', component: ModalAddAsesoresComponent, data:{showInMenu:false}},
-      {path: 'edit-asesor/:id', component: ModalAddAsesoresComponent, data:{  showInMenu: false } },
+      {path: 'dashboard-aliado', component: DashboardComponent, data: {title: 'Dashboard', showInMenu: true, icon: 'fa-solid fa-chart-pie', breadcrumbs:['Dashboard']}},
+      //Asesores
+      {
+        path: 'asesores',
+        data: {breadcrumbs: ['Asesores']},
+        children: [
+          {path: '', component:ListAsesoresComponent, data: {title: 'Asesores', showInMenu: true, icon: 'fa-solid fa-users'}},
+          {path: 'add-asesor', component: ModalAddAsesoresComponent, data:{showInMenu:false, breadcrumbs:['Agregar Asesor']}},
+          {path: 'edit-asesor/:id', component: ModalAddAsesoresComponent, data:{  showInMenu: false, breadcrumbs:['Editar Asesor'] } },
+        ]
+      },
+      {path: 'list-asesorias', component: AsesoriaAliadoComponent, data: {title: 'Asesorias', showInMenu: true, icon: 'fa-solid fa-users-gear', breadcrumbs:['Asesorias']}},
+      {path: 'Reportes-aliado', component:ReportesComponent, data:{title: 'Reportes', showInMenu: true, icon: 'fa-regular fa-file-lines', breadcrumbs:['Reportes']}},
       {path: 'todos-los-aliados', component: TodosLosAliadosComponent, data:{  showInMenu: false } },
-      {path: 'list-rutas', component: ListRutaComponent, data: {title: 'Rutas', showInMenu:true, icon: 'fa-solid fa-location-arrow', breadcrums:['Rutas']}},
+      {path: 'list-rutas', component: ListRutaComponent, data: {title: 'Rutas', showInMenu:true, icon: 'fa-solid fa-location-arrow', breadcrumbs:['Rutas']}},
       {path: 'list-actividades-aliado', component: ListActividadesComponent, data:{  showInMenu: false } },
       {path: 'Ruta', component: RutaAliadoComponent, data:{  showInMenu: false } },
-      {path: 'perfil-aliado', component: PerfilAliadoComponent, data: {title: 'Perfil', showInMenu: true, icon: 'fa-solid fa-circle-user', breadcrums:['Perfil']}},
+      {path: 'perfil-aliado', component: PerfilAliadoComponent, data: {title: 'Perfil', showInMenu: true, icon: 'fa-solid fa-circle-user', breadcrumbs:['Perfil']}},
     ]
   }
 ];  
@@ -35,8 +41,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot( routes)
-  ]
+    RouterModule.forChild( routes)
+  ],
+  exports: [RouterModule]
 })
 export class AliadosRoutingModule {
   static getRoutes(): Routes{

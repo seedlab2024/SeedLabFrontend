@@ -10,9 +10,12 @@
         </button>
         <app-header [title] [subtitle]="'Editar Actividad'"></app-header>
     </header>
-    
+
+    <!-- Breadcrumbs -->
+    <app-breadcrumbs></app-breadcrumbs>
+
     <div *ngIf="isLoading" class="loading-overlay">
-        <div class="spinner " ></div>
+        <div class="spinner "></div>
     </div>
 
     <div class="flex items-center justify-center font-poppins">
@@ -28,7 +31,8 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de la
                                     actividad
                                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
-                                        matTooltip="El nombre no puede tener más de 39 caracteres" matTooltipPosition="right" style="color: #adb7c7;">
+                                        matTooltip="El nombre no puede tener más de 39 caracteres"
+                                        matTooltipPosition="right" style="color: #adb7c7;">
                                     </fa-icon>
                                 </label>
                                 <input type="text" class="w-full p-2 border rounded" formControlName="nombre">
@@ -41,13 +45,12 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Descripción de la
                                     actividad
                                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
-                                    matTooltip="La descripcion debe tener entre 300 y 470 caracteres"
-                                    matTooltipPosition="right" style="color: #adb7c7;">
+                                        matTooltip="La descripcion debe tener entre 300 y 470 caracteres"
+                                        matTooltipPosition="right" style="color: #adb7c7;">
                                     </fa-icon>
                                 </label>
-                                <textarea class="w-full p-2 border rounded" rows="3"
-                                    formControlName="descripcion" maxlength="470"
-                                    (input)="updateCharCount()"></textarea>
+                                <textarea class="w-full p-2 border rounded" rows="3" formControlName="descripcion"
+                                    maxlength="470" (input)="updateCharCount()"></textarea>
                                 <div *ngIf="submitted && a.descripcion.errors"
                                     class="inline-block pl-2 text-red-500 rounded-lg bg-red-50">
                                     <div *ngIf="a.descripcion.errors.required">Este campo es requerido *</div>
@@ -74,7 +77,8 @@
                                     class="text-sm font-normal relative cursor-pointer flex flex-row items-center flex-none justify-center"
                                     for="nombre">
                                     <input type="file" id="fuente" class="hidden" accept="image/*" #fileInput
-                                        (change)="onFileSelecteds($event, 'fuente')" [disabled]="actividadForm.get('fuente').disabled">
+                                        (change)="onFileSelecteds($event, 'fuente')"
+                                        [disabled]="actividadForm.get('fuente').disabled">
                                     <span (click)="triggerFileInput()"
                                         class="w-full text-black px-4 py-2 border-2 border-blue-300 rounded-lg inline-flex items-center bg-white justify-center hover:bg-blue-100">
                                         Subir Imagen
@@ -108,7 +112,8 @@
 
 
                             <div class="flex justify-center w-full px-4 mt-4">
-                                <button id="guardarBtn" type="button" (click)="addActividadSuperAdmin()" [disabled]="actividadForm.invalid || actividadForm.disabled" 
+                                <button id="guardarBtn" type="button" (click)="addActividadSuperAdmin()"
+                                    [disabled]="actividadForm.invalid || actividadForm.disabled"
                                     class="w-auto max-w-md bg-orange-500 text-white py-1 px-10 rounded-full text-lg sm:text-xl md:text-xl font-semibold italic font-poppins transition-all duration-300 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-300">
                                     Guardar
                                 </button>
@@ -124,10 +129,10 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Selecciona el nivel a
                                     editar
                                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
-                                    matTooltip="Si requiere editar el nombre del nivel, seleccione dicho nivel para editarlo en el siguiente campo, después de click en 'Guardar'" matTooltipPosition="right"
-                                    style="color: #adb7c7;">
-                                </fa-icon>
-                            </label>
+                                        matTooltip="Si requiere editar el nombre del nivel, seleccione dicho nivel para editarlo en el siguiente campo, después de click en 'Guardar'"
+                                        matTooltipPosition="right" style="color: #adb7c7;">
+                                    </fa-icon>
+                                </label>
                                 <select (change)="onNivelChange($event.target.value)" class="w-full p-2 border rounded"
                                     formControlName="id_nivel" (change)="onNivelSelect($event)">
                                     <option *ngFor="let nivel of niveles; let i = index" class="mb-4"
@@ -168,7 +173,8 @@
                             <div class="flex justify-end items-center mb-4">
                                 <span class="mr-3 text-[#FFB000] text-[18px] italic mb-1" style="font-weight: 600;">{{
                                     isEditing ? 'Guardar' : 'Agregar nivel' }}</span>
-                                <button id="agregarNivelBtn" (click)="addNivelSuperAdmin()" [disabled]="isSubmittingNivel"
+                                <button id="agregarNivelBtn" (click)="addNivelSuperAdmin()"
+                                    [disabled]="isSubmittingNivel"
                                     class="bg-[#FFB000] text-white w-16 h-8 rounded-lg flex items-center justify-center no-underline transition-all duration-300 hover:bg-[#E59D00] focus:outline-none focus:ring-2 focus:ring-[#FFB000]">
                                     <ng-container *ngIf="!isSubmittingNivel">
                                         <span class="text-3xl font-semibold leading-none">+</span>
@@ -207,10 +213,10 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Selecciona la lección para
                                     editar
                                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
-                                    matTooltip="Si requiere editar el nombre de la lección, seleccione dicha lección para editarlo en el siguiente campo, después de click en 'Guardar'" matTooltipPosition="right"
-                                    style="color: #adb7c7;">
-                                </fa-icon>
-                            </label>
+                                        matTooltip="Si requiere editar el nombre de la lección, seleccione dicha lección para editarlo en el siguiente campo, después de click en 'Guardar'"
+                                        matTooltipPosition="right" style="color: #adb7c7;">
+                                    </fa-icon>
+                                </label>
                                 <select formControlName="id_leccion" class="w-full p-2 border rounded"
                                     (change)="onLeccionChange($event.target.value)">
                                     <option *ngFor="let verleccion of listarLeccion" [value]="verleccion.id">
@@ -301,7 +307,7 @@
                                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                                         matTooltip="El titulo no puede tener más de 70 caracteres"
                                         matTooltipPosition="right" style="color: #adb7c7;">
-                                </fa-icon>
+                                    </fa-icon>
                                 </label>
                                 <input formControlName="titulo" type="text" class="w-full p-2 border rounded">
                                 <div *ngIf="submittedContent && cl.titulo.errors"
@@ -314,11 +320,10 @@
                                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                                         matTooltip="La descripcion no puede tener más de 1200 caracteres"
                                         matTooltipPosition="right" style="color: #adb7c7;">
-                                </fa-icon>
+                                    </fa-icon>
                                 </label>
-                                <textarea class="w-full p-2 border rounded" rows="3"
-                                    formControlName="descripcion" maxlength="1200"
-                                    (input)="updateCharCountContenido()"></textarea>
+                                <textarea class="w-full p-2 border rounded" rows="3" formControlName="descripcion"
+                                    maxlength="1200" (input)="updateCharCountContenido()"></textarea>
                                 <div *ngIf="submittedContent && cl.descripcion.errors"
                                     class="inline-block pl-2 text-red-500 rounded-lg bg-red-50">
                                     <div *ngIf="cl.descripcion.errors.required">Este campo es requerido *</div>

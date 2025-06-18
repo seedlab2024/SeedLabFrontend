@@ -6,19 +6,7 @@
   <ol
     class="flex flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent text-sm text-gray-500 gap-1 md:gap-2"
   >
-    <!-- Breadcrumb "Inicio" -->
-    <li class="flex items-center min-w-fit">
-      <a
-        routerLink="/"
-        class="hover:text-blue-600 font-medium flex items-center"
-      >
-        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9m-2 0v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/>
-        </svg>
-        Inicio
-      </a>
-      <span class="mx-2 select-none">/</span>
-    </li>
+    
     <!-- Resto de los breadcrumbs -->
     <li
       *ngFor="let bc of breadcrumbs; let last = last"
@@ -26,8 +14,8 @@
     >
       <ng-container *ngIf="!last">
         <a
-          [routerLink]="bc.url"
-          class="hover:text-blue-600 transition-colors font-medium"
+          [routerLink]="[bc.url]"
+          class="hover:text-blue-600 transition-colors font-medium z-10"
         >
           {{ bc.label }}
         </a>

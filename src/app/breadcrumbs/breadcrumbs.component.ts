@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+// breadcrumbs.ts (Versión modificada y dinámica)
 
-// Interfaz para definir la estructura de cada breadcrumb
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, PRIMARY_OUTLET } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { User } from '../Modelos/user.model';
+
 interface Breadcrumb {
   label: string;
   url: string;
@@ -13,71 +16,106 @@ interface Breadcrumb {
   templateUrl: './breadcrumbs.component.html',
   styleUrls: []
 })
-export class BreadcrumbsComponent implements OnInit {
-  
-  public breadcrumbs: Breadcrumb[] = [];
+export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  public breadcrumbs: Breadcrumb[] = [];
+  private routerSubscription: Subscription;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.routerSubscription = new Subscription();
+  }
 
   ngOnInit() {
-    // Escucha los eventos de navegación para reconstruir los breadcrumbs en cada cambio de ruta.
-    this.router.events.pipe(
+    this.routerSubscription = this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
+      this.buildBreadcrumbs(); // Llamamos a nuestra nueva función principal
     });
-    
-    // Construye los breadcrumbs en la carga inicial de la página.
-    this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
+    // Carga inicial
+    this.buildBreadcrumbs();
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription.unsubscribe();
   }
 
   /**
-   * Construye el array de breadcrumbs de forma recursiva, recorriendo el árbol de rutas activas.
-   * @param route La ruta actual que se está procesando.
-   * @param url La URL acumulada hasta este punto de la recursión.
-   * @param breadcrumbs El array acumulado de breadcrumbs.
-   * @returns Un array de objetos Breadcrumb que representan la ruta de navegación completa.
+   * Construye la lista completa de breadcrumbs, comenzando con el "Inicio" dinámico.
    */
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
+  private buildBreadcrumbs(): void {
+    // 1. Crear el breadcrumb de "Inicio" con la URL del dashboard del rol.
+    const homeBreadcrumb: Breadcrumb = {
+      label: 'Inicio',
+      url: this.getDashboardUrlForCurrentUser()
+    };
+
+    // 2. Obtener los breadcrumbs de la ruta activa.
+    const routeBreadcrumbs = this.createBreadcrumbsFromRoute(this.activatedRoute.root);
+
+    // 3. Combinarlos en el array final.
+    this.breadcrumbs = [homeBreadcrumb, ...routeBreadcrumbs];
+  }
+
+  /**
+   * Obtiene la URL del dashboard basada en el rol del usuario guardado en localStorage.
+   * Esta es la misma lógica de tu LoginComponent.
+   */
+  private getDashboardUrlForCurrentUser(): string {
+    const identityJSON = localStorage.getItem('identity');
+    if (!identityJSON) {
+      return '/home'; // URL por defecto si no hay usuario logueado
+    }
+
+    const user: User = JSON.parse(identityJSON);
+    const currentRolId = user.id_rol?.toString();
+
+    switch (currentRolId) {
+      case '1': return '/superadmin/dashboard-superadmin';
+      case '2': return '/orientador/dashboard-orientador';
+      case '3': return '/aliados/dashboard-aliado';
+      case '4': return '/asesor/asesorias';
+      case '5': return '/emprendedor/list-empresa';
+      default: return '/home'; // Fallback por si el rol no se reconoce
+    }
+  }
+
+  /**
+   * Crea los breadcrumbs basándose en la configuración de la ruta (excluyendo "Inicio").
+   * He renombrado tu `createBreadcrumbs` para mayor claridad.
+   */
+  private createBreadcrumbsFromRoute(
+    route: ActivatedRoute,
+    url: string = '',
+    breadcrumbs: Breadcrumb[] = []
+  ): Breadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
-    // Si no hay más hijos, hemos llegado al final del camino y devolvemos lo que hemos construido.
     if (children.length === 0) {
       return breadcrumbs;
     }
 
-    // Iteramos sobre los hijos para encontrar la ruta primaria activada.
     for (const child of children) {
-      // Ignoramos outlets con nombre (como 'modal', 'popup', etc.) y nos centramos en el principal.
-      if (child.outlet !== 'primary') {
+      if (child.outlet !== PRIMARY_OUTLET) {
         continue;
       }
 
       const routeSnapshot = child.snapshot;
-      const breadcrumbData = routeSnapshot.data['breadcrumbs'];
-      
-      // Construimos el segmento de URL de esta ruta hija.
-      const routeURL = routeSnapshot.url.map(segment => segment.path).join('/');
-      
-      // Acumulamos la URL para el siguiente nivel de la recursión.
-      // Aseguramos que la URL construida sea correcta.
-      const nextUrl = routeURL ? `${url}/${routeURL}` : url;
+      const nextUrlSegments = (url ? url.split('/') : []).concat(routeSnapshot.url.map(s => s.path));
+      const nextUrl = nextUrlSegments.filter(Boolean).join('/');
 
-      // Si la ruta tiene la propiedad 'breadcrumbs' en su data, la agregamos a la lista.
-      if (breadcrumbData) {
+      if (routeSnapshot.data['breadcrumbs']) {
+        const breadcrumbData = routeSnapshot.data['breadcrumbs'];
         for (const label of breadcrumbData) {
-          // Comprobamos si la etiqueta ya existe para evitar duplicados.
-          if (!breadcrumbs.find(bc => bc.label === label)) {
-              breadcrumbs.push({ label: label, url: nextUrl });
+          const finalUrl = `/${nextUrl}`;
+          // Evitamos añadir duplicados
+          if (!breadcrumbs.some(b => b.label === label && b.url === finalUrl)) {
+            breadcrumbs.push({ label, url: finalUrl });
           }
         }
       }
 
-      // Hacemos la llamada recursiva para procesar a los "nietos".
-      return this.createBreadcrumbs(child, nextUrl, breadcrumbs);
+      return this.createBreadcrumbsFromRoute(child, nextUrl, breadcrumbs);
     }
-    
-    // Devolvemos los breadcrumbs si no se encontró un hijo de outlet primario.
     return breadcrumbs;
   }
 }
