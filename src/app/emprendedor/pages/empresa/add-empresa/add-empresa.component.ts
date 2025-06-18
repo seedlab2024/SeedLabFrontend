@@ -390,7 +390,7 @@ export class AddEmpresaComponent {
     this.EmpresaService.addEmpresa(this.token, payload).subscribe(
       data => {
         this.alertService.successAlert('Éxito', 'Registro exitoso');
-        this.router.navigate(['list-empresa']);
+        this.router.navigate(['/emprendedor/list-empresa']);
       },
       error => {
         this.alertService.errorAlert('Error', error.error.message);

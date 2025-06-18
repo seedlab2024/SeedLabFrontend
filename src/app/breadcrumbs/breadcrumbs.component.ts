@@ -74,7 +74,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       case '2': return '/orientador/dashboard-orientador';
       case '3': return '/aliados/dashboard-aliado';
       case '4': return '/asesor/asesorias';
-      case '5': return '/emprendedor/list-empresa';
+      case '5': return '/emprendedor/empresa';
       default: return '/home'; // Fallback por si el rol no se reconoce
     }
   }

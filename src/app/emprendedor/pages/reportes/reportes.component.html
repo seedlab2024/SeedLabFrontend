@@ -3,6 +3,10 @@
   <header class="flex flex-col md:flex-row justify-between items-center mb-6 md:pl-4">
     <app-header [title] [subtitle]="'Reportes'"></app-header>
   </header>
+
+  <!-- Breadcrumbs -->
+  <app-breadcrumbs></app-breadcrumbs>
+
   <!-- Sección de filtros -->
   <div class="mb-6">
     <form [formGroup]="reporteForm" (ngSubmit)="mostrarDatosReporte()">

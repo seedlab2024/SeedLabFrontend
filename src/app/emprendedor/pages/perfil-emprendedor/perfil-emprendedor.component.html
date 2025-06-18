@@ -6,6 +6,9 @@
             <app-header [title] [subtitle]="'Perfil'"></app-header>
         </header>
 
+        <!-- Breadcrumbs -->
+        <app-breadcrumbs></app-breadcrumbs>
+
         <div class="flex justify-center">
             <div class="spinner " *ngIf="isLoading"></div>
         </div>
@@ -226,7 +229,8 @@
                         {{ buttonMessage }}
                     </span>
                 </button>
-                <button id="botonDesactivar" class="py-2 px-4 font-bold bg-sky-400 rounded-full hover:bg-red-600 text-white"
+                <button id="botonDesactivar"
+                    class="py-2 px-4 font-bold bg-sky-400 rounded-full hover:bg-red-600 text-white"
                     *ngIf="!blockedInputs" (click)="desactivarEmprendedor()">Desactivar Cuenta
                 </button>
 

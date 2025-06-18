@@ -153,7 +153,7 @@ export class ListEmpresasComponent implements OnInit {
     Redirige a 'add-empresa' pasando el ID del emprendedor y el documento como parámetros.
   */
   editEmpresa(id_emprendedor: string, documento: string): void {
-    this.router.navigate(['add-empresa', id_emprendedor, documento]);
+    this.router.navigate(['/emprendedor/empresa/add-empresa', id_emprendedor, documento]);
   }
 
   /*
@@ -177,7 +177,7 @@ export class ListEmpresasComponent implements OnInit {
           this.alertService.infoAlert("Indicaciones del formulario", mensaje)
             .then((result) => {
               if (result.isConfirmed) {
-                this.router.navigate(['/encuesta', documento]);
+                this.router.navigate(['emprendedor/encuesta', documento]);
               }
             });
         },
