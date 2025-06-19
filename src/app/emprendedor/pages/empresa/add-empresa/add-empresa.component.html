@@ -56,13 +56,15 @@
       <div *ngIf="currentSubSectionIndex === 0">
         <div class="max-w-full space-y-2 md:px-8">
           <div class="p-4 rounded-lg shadow-md bg-gray-50 md:p-8 md:my-6">
+            <!-- Leyenda de campos obligatorios -->
+            <p class="text-sm text-gray-600 mb-6">Los campos marcados con <span class="text-red-500 font-bold">*</span> son obligatorios.</p>
             <div class="container px-4 py-12 mx-auto">
               <form [formGroup]="addEmpresaForm" (ngSubmit)="crearEmpresa()">
                 <div class="col-span-12 rounded-lg">
                   <div class="flex flex-col">
                     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3 md:grid-cols-2">
                       <div class="relative w-full text-base">
-                        <label for="nombre" class="text-lg font-normal">Nombre:</label>
+                        <label for="nombre" class="text-lg font-normal">Nombre:<span class="text-red-500 ml-1">*</span></label>
                         <input type="text" formControlName="nombre"
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           [ngClass]="{'border-red-500': f['nombre'].invalid && (f['nombre'].dirty || f['nombre'].touched)}">
@@ -74,7 +76,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label for="correo" class="text-lg font-normal">Correo Electrónico:</label>
+                        <label for="correo" class="text-lg font-normal">Correo Electrónico:<span class="text-red-500 ml-1">*</span></label>
                         <input type="email" formControlName="correo"
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           [ngClass]="{'border-red-500': f['correo'].invalid && (f['correo'].dirty || f['correo'].touched)}">
@@ -86,7 +88,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label for="tipodocumento" class="text-lg font-normal">Tipo de Documento:</label>
+                        <label for="tipodocumento" class="text-lg font-normal">Tipo de Documento:<span class="text-red-500 ml-1">*</span></label>
                         <select id="tipoDocumento" formControlName="id_tipo_documento"
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100 max-sm:text-sm"
                           [ngClass]="{'border-red-500': f['id_tipo_documento'].invalid && (f['id_tipo_documento'].dirty || f['id_tipo_documento'].touched)}">
@@ -101,7 +103,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label for="documento" class="text-lg font-normal">Número Documento Emprendedor:</label>
+                        <label for="documento" class="text-lg font-normal">Número Documento Emprendedor:<span class="text-red-500 ml-1">*</span></label>
                         <input
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           formControlName="documento"
@@ -118,7 +120,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label for="razonSocial" class="text-lg font-normal">Razón Social:</label>
+                        <label for="razonSocial" class="text-lg font-normal">Razón Social:<span class="text-red-500 ml-1">*</span></label>
                         <input
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           formControlName="razonSocial"
@@ -131,7 +133,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label for="departamento" class="text-lg font-normal">Departamento:</label>
+                        <label for="departamento" class="text-lg font-normal">Departamento:<span class="text-red-500 ml-1">*</span></label>
                         <select id="departamento" name="departamento"
                           (change)="onDepartamentoSeleccionado($event.target.value)" formControlName="id_departamento"
                           (change)="onDepartamentoSeleccionado($event)"
@@ -147,11 +149,11 @@
                         <div
                           *ngIf="f['id_departamento'].invalid && (submitted || f['id_departamento'].dirty || f['id_departamento'].touched)"
                           class="inline-block p-1 mt-2 mb-1 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
-                          <div *ngIf="f.funciones.errors.required">Este campo es requerido *</div>
+                          <div *ngIf="f.id_departamento.errors.required">Este campo es requerido *</div>
                         </div>
                       </div>
                       <div class="relative w-full text-base">
-                        <label for="municipio" class="text-lg font-normal">Municipio:</label>
+                        <label for="municipio" class="text-lg font-normal">Municipio:<span class="text-red-500 ml-1">*</span></label>
                         <select id="municipio" name="municipio" formControlName="id_municipio"
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100 max-sm:text-xs"
                           [ngClass]="{'border-red-500': f['id_municipio'].invalid && (f['id_municipio'].dirty || f['id_municipio'].touched)}">
@@ -169,7 +171,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label for="direccion" class="text-lg font-normal">Dirección del emprendimiento:</label>
+                        <label for="direccion" class="text-lg font-normal">Dirección del emprendimiento:<span class="text-red-500 ml-1">*</span></label>
                         <input
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           formControlName="direccion"
@@ -182,7 +184,7 @@
                       </div>
 
                       <div class="relative w-full text-base">
-                        <label type="text" for="telefono" class="text-lg font-normal">Teléfono:</label>
+                        <label for="telefono" class="text-lg font-normal">Teléfono:<span class="text-red-500 ml-1">*</span></label>
                         <input
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           formControlName="telefono"
@@ -201,7 +203,7 @@
                     </div>
                     <div class="grid grid-cols-1 gap-4 mb-6 lg:grid-cols-3 md:grid-cols-2">
                       <div class="relative w-full text-base">
-                        <label type="number" for="celular" class="text-lg font-normal">Celular:</label>
+                        <label for="celular" class="text-lg font-normal">Celular:<span class="text-red-500 ml-1">*</span></label>
                         <input
                           class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                           formControlName="celular"
@@ -224,7 +226,6 @@
                     </div>
                   </div>
                 </div>
-
               </form>
             </div>
           </div>
@@ -244,11 +245,13 @@
       <div *ngIf="currentSubSectionIndex === 0">
         <div class="max-w-full space-y-2 md:px-8">
           <div class="p-4 rounded-lg shadow-md bg-gray-50 md:p-8 md:my-5">
+            <!-- Leyenda de campos obligatorios -->
+            <p class="text-sm text-gray-600 mb-6">Los campos marcados con <span class="text-red-500 font-bold">*</span> son obligatorios.</p>
             <div class="container px-4 py-12 mx-auto">
               <form [formGroup]="addEmpresaForm" (ngSubmit)="crearEmpresa()">
                 <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
                   <div class="relative w-full text-base">
-                    <label for="profesion" class="text-lg font-normal">Profesión:</label>
+                    <label for="profesion" class="text-lg font-normal">Profesión:<span class="text-red-500 ml-1">*</span></label>
                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                       matTooltip="El tamaño maximo son 50 caracteres."
                       matTooltipPosition="right" style="color: #adb7c7;">
@@ -263,7 +266,7 @@
                     </div>
                   </div>
                   <div class="relative w-full text-base">
-                    <label for="cargo" class="text-lg font-normal">Cargo:</label>
+                    <label for="cargo" class="text-lg font-normal">Cargo:<span class="text-red-500 ml-1">*</span></label>
                     <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                       matTooltip="El tamaño maximo son 50 caracteres."
                       matTooltipPosition="right" style="color: #adb7c7;">
@@ -278,7 +281,7 @@
                     </div>
                   </div>
                   <div class="relative w-full text-base">
-                    <label for="experiencia" class="text-lg font-normal">Experiencia:</label>
+                    <label for="experiencia" class="text-lg font-normal">Experiencia:<span class="text-red-500 ml-1">*</span></label>
                     <textarea formControlName="experiencia" maxlength="300" (input)="updateCharCount()"
                       class="w-full h-40 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                       rows="2" cols="20"
@@ -293,7 +296,7 @@
                     </div>
                   </div>
                   <div class="relative w-full text-base">
-                    <label for="funciones" class="text-lg font-normal">Funciones:</label>
+                    <label for="funciones" class="text-lg font-normal">Funciones:<span class="text-red-500 ml-1">*</span></label>
                     <textarea formControlName="funciones" maxlength="300" (input)="updateCharCountFunciones()"
                       class="w-full h-40 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                       rows="4" cols="30"></textarea>
@@ -360,6 +363,8 @@
         <div *ngIf="currentSubSectionIndex === 0">
           <div class="max-w-full space-y-2 md:px-8">
             <div class="p-4 rounded-lg shadow-md bg-gray-50 md:p-8 md:my-6">
+              <!-- Leyenda de campos obligatorios -->
+              <p class="text-sm text-gray-600 mb-6">Los campos marcados con <span class="text-red-500 font-bold">*</span> son obligatorios.</p>
               <div class="container px-4 py-12 mx-auto">
                 <form [formGroup]="addApoyoEmpresaForm" (ngSubmit)="crearEmpresa()">
 
@@ -387,7 +392,7 @@
                   </div>
                   <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6 mb-6">
                     <div class="w-full text-base relative">
-                      <label for="nombre" class="text-lg font-normal">Nombre:</label>
+                      <label for="nombre" class="text-lg font-normal">Nombre:<span class="text-red-500 ml-1">*</span></label>
                       <input formControlName="nombre"
                         class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                         [ngClass]="{'border-red-500': g['nombre'].invalid && (g['nombre'].dirty || g['nombre'].touched)}">
@@ -400,7 +405,7 @@
                     </div>
 
                     <div class="w-full text-base relative">
-                      <label for="apellido" class="text-lg font-normal">Apellido:</label>
+                      <label for="apellido" class="text-lg font-normal">Apellido:<span class="text-red-500 ml-1">*</span></label>
                       <input formControlName="apellido"
                         class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                         [ngClass]="{'border-red-500': g['apellido'].invalid && (g['apellido'].dirty || g['apellido'].touched)}">
@@ -412,7 +417,7 @@
                     </div>
 
                     <div class="relative w-full text-base">
-                      <label for="tipodocumento" class="text-lg font-normal">Tipo de Documento:</label>
+                      <label for="tipodocumento" class="text-lg font-normal">Tipo de Documento:<span class="text-red-500 ml-1">*</span></label>
                       <select id="tipoDocumento" formControlName="id_tipo_documento"
                         class="p-2 w-full h-10 mb-2 border-blue-300 rounded-lg bg-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200 ease-in hover:bg-blue-100 focus:bg-blue-100"
                         [ngClass]="{'border-red-500': g['id_tipo_documento'].invalid && (g['id_tipo_documento'].dirty || g['id_tipo_documento'].touched)}">
@@ -427,7 +432,7 @@
                     </div>
 
                     <div class="relative w-full text-base">
-                      <label for="numeroDocumento" class="text-lg font-normal">Número de documento:</label>
+                      <label for="numeroDocumento" class="text-lg font-normal">Número de documento:<span class="text-red-500 ml-1">*</span></label>
                       <input formControlName="documento"
                         class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                         [ngClass]="{'border-red-500': g['documento'].invalid && (g['documento'].dirty || g['documento'].touched)}">
@@ -442,10 +447,10 @@
                     </div>
 
                     <div class="relative w-full text-base">
-                      <label for="cargo" class="text-lg font-normal">Cargo:</label>
+                      <label for="cargo" class="text-lg font-normal">Cargo:<span class="text-red-500 ml-1">*</span></label>
                       <input formControlName="cargo"
                         class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
-                        [ngClass]="{'border-red-500': f['id_tipo_documento'].invalid && (f['id_tipo_documento'].dirty || f['id_tipo_documento'].touched)}">
+                        [ngClass]="{'border-red-500': g['cargo'].invalid && (g['cargo'].dirty || g['cargo'].touched)}">
                       <div *ngIf="g['cargo'].invalid && (submitted || g['cargo'].dirty || g['cargo'].touched)"
                         class="inline-block mt-2 text-sm text-red-500 bg-red-50 p-2 rounded-lg" role="alert">
                         <div *ngIf="g.cargo.errors.required">Este campo es requerido *</div>
@@ -453,7 +458,7 @@
                     </div>
 
                     <div class="relative w-full text-base">
-                      <label for="correo" class="text-lg font-normal">Correo:</label>
+                      <label for="correo" class="text-lg font-normal">Correo:<span class="text-red-500 ml-1">*</span></label>
                       <input formControlName="email" type="email"
                         class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                         [ngClass]="{'border-red-500': g['email'].invalid && (g['email'].dirty || g['email'].touched)}">
@@ -465,7 +470,7 @@
                     </div>
 
                     <div class="relative w-full text-base">
-                      <label for="celular" class="text-lg font-normal">Celular:</label>
+                      <label for="celular" class="text-lg font-normal">Celular:<span class="text-red-500 ml-1">*</span></label>
                       <input formControlName="celular"
                         class="w-full h-10 p-2 mb-2 transition duration-200 ease-in bg-gray-200 border-blue-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100"
                         [ngClass]="{'border-red-500': g['celular'].invalid && (g['celular'].dirty || g['celular'].touched)}">

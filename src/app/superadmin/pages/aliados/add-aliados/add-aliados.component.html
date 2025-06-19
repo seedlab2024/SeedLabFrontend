@@ -23,6 +23,10 @@
       <!-- Contenido de la primera sección -->
       <div
         class="w-full h-full px-10 py-4 mx-auto rounded-lg shadow-md sm:w-3/4 md:w-2/3 bg-gray-50 md:px-32 md:py-10 md:my-6">
+        
+        <!-- Leyenda de campos obligatorios -->
+        <p class="text-sm text-gray-600 mb-6">Los campos marcados con <span class="text-red-500 font-bold">*</span> son obligatorios.</p>
+
         <div class="flex flex-col items-center mb-4 sm:mb-6">
           <label for="imagen_ruta" class="cursor-pointer text-center">
             <div
@@ -39,7 +43,7 @@
               </ng-template>
             </div>
             <span class="text-xs sm:text-sm text-gray-600">
-              Logo
+              Logo<span class="text-red-500 ml-1">*</span>
               <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                 matTooltip="La imagen debe tener como máximo 1751 x 1751 píxeles y no debe pesar mas de 5MB."
                 matTooltipPosition="right" style="color: #adb7c7;">
@@ -57,10 +61,9 @@
 
         <div class="grid grid-cols-1 md:grid md:grid-cols-1">
 
-
           <!-- Campo Nombre -->
           <div class="text-md font-normal">
-            <label class="text-sm font-normal" for="nombre">Nombre</label>
+            <label class="text-sm font-normal" for="nombre">Nombre<span class="text-red-500 ml-1">*</span></label>
             <input type="text" formControlName="nombre"
               class="block w-full px-2 py-1 mt-1 transition duration-200 ease-in bg-gray-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100">
             <div *ngIf="formSubmitted && aliadoForm.get('nombre')?.invalid"
@@ -70,7 +73,7 @@
           </div>
           <!-- Campo Correo Electrónico -->
           <div class="mt-3 text-md font-normal">
-            <label class="text-sm font-normal" for="email">Correo Electrónico</label>
+            <label class="text-sm font-normal" for="email">Correo Electrónico<span class="text-red-500 ml-1">*</span></label>
             <input type="email" formControlName="email" [readonly]="bloqueado" [ngStyle]="{'cursor': bloqueado ? 'not-allowed' : 'auto'}"
               class="block w-full px-2 py-1 mt-1 transition duration-200 ease-in bg-gray-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100">
             <div *ngIf="formSubmitted && aliadoForm.get('email')?.invalid"
@@ -94,6 +97,9 @@
                 <div *ngIf="formSubmitted && aliadoForm.get('password')?.invalid"
                   class="inline-block p-1 mt-2 mb-1 text-sm text-red-500 rounded-lg bg-red-50">
                   Este campo es requerido*.
+                </div>
+                 <div *ngIf="idAliado" class="mt-1 text-xs text-gray-500">
+                    Deja este campo en blanco si no deseas cambiar la contraseña.
                 </div>
               </div>
             </div>
@@ -121,7 +127,7 @@
           <!-- Campo Descripción -->
           <div class="text-md font-normal mt-3">
             <label class="text-sm font-normal" for="descripcion">
-              Descripción fanpage
+              Descripción fanpage<span class="text-red-500 ml-1">*</span>
               <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                 matTooltip="La descripción debe ser de mínimo 206 caracteres y de máximo 312 caracteres."
                 matTooltipPosition="right" style="color: #adb7c7;">
@@ -140,7 +146,7 @@
           </div>
 
           <div class="mt-3 text-md font-normal">
-            <label class="text-sm font-normal" for="urlpagina">Url página web</label>
+            <label class="text-sm font-normal" for="urlpagina">Url página web<span class="text-red-500 ml-1">*</span></label>
             <input type="text" formControlName="urlpagina"
               class="block w-full px-2 py-1 mt-1 transition duration-200 ease-in bg-gray-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-100 focus:bg-blue-100">
             <div *ngIf="formSubmitted && aliadoForm.get('urlpagina')?.invalid"
@@ -152,7 +158,7 @@
           <!-- Campo Tipo de archivo -->
           <div class="mt-3 text-xl font-normal">
             <label class="text-sm font-normal" for="id_tipo_dato">
-              Contenido didáctico
+              Contenido didáctico<span class="text-red-500 ml-1">*</span>
               <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                 matTooltip="Recuerda que el tipo de dato que selecciones se mostrará en la página 'Todos los Aliados'."
                 matTooltipPosition="right" style="color: #adb7c7;">
@@ -211,7 +217,7 @@
 
           <!-- Campo banner -->
           <div *ngIf="!idAliado" class="mt-2">
-            <label class="relative mt-3 text-sm font-normal" for="logo">Banner
+            <label class="relative mt-3 text-sm font-normal" for="logo">Banner<span class="text-red-500 ml-1">*</span>
               <fa-icon [icon]="falupa" class="text-sm inline-block ml-1" mat-raised-button
                 matTooltip="La imagen debe tener como máximo 684 pixeles de alto, no debe pesar mas de 5MB."
                 matTooltipPosition="right" style="color: #adb7c7;">
