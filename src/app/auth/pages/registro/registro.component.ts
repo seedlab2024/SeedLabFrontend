@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faEye, faIdCard, faLandmarkFlag, faMountainCity, faPhone, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { Emprendedor } from '../../../Modelos/emprendedor.model';
@@ -14,7 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FontAwesomeModule, ReactiveFormsModule, CommonModule, MatCheckboxModule],
+  imports: [FontAwesomeModule, ReactiveFormsModule, CommonModule, MatCheckboxModule, RouterModule],
   providers: [DepartamentoService, MunicipioService, AuthService, AlertService],
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']

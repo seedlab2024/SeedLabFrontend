@@ -16,7 +16,7 @@
             </div>
             <div class="col-span-2">
                 <h2 class="text-[#fff] text-center mt-4 md:font-[500] font-poppins">¿Aún no estás registrado en SeedLab?
-                    <a class="no-underline" href="registro"><span class="text-[#00B3ED]">Registrate</span></a></h2>
+                    <a class="no-underline" [routerLink]="['/auth/registro']"><span class="text-[#00B3ED]">Registrate</span></a></h2>
 
 
                 <form [formGroup]="loginForm" (ngSubmit)="login()"
