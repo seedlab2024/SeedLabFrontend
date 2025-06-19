@@ -33,7 +33,7 @@ export class ListAliadosComponent implements OnInit {
     private aliadoService: AliadoService,
     private router: Router,
     private aRoute: ActivatedRoute
-  ) { this.id = this.aRoute.snapshot.paramMap.get('id');}
+  ) { this.id = this.aRoute.snapshot.paramMap.get('id'); }
 
   /* Inicializa con esas funciones al cargar la página */
   ngOnInit(): void {
@@ -84,7 +84,7 @@ export class ListAliadosComponent implements OnInit {
 
   /* Retorna los aliados dependiendo de su estado, normalmente en activo */
   onEstadoChange(event: any): void {
-      this.cargarAliados();
+    this.cargarAliados();
   }
 
   /* Limpia el filtro de búsqueda, volviendo a retornar los aliados activos */
@@ -142,16 +142,23 @@ export class ListAliadosComponent implements OnInit {
   updatePaginatedData(): void {
     const start = (this.page - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
-    const filterText = this.userFilter.nombre.trim();
-  
+
+    // 1. Convertir el texto de búsqueda a minúsculas UNA SOLA VEZ, fuera del bucle.
+    const filterText = this.userFilter.nombre.trim().toLowerCase();
+
     this.paginatedAliados = this.listaAliado
       .filter(aliado => {
+        // 2. Asegurarse de que el nombre es un string antes de procesar
         if (typeof aliado.nombre === 'string') {
-          return aliado.nombre.includes(filterText) && aliado.estado.toString() === this.userFilter.estadoString;
-        } else {
-          // Handle the case where aliado.nombre is not a string
-          return false;
+          const nombreEnMinusculas = aliado.nombre.toLowerCase();
+
+          // 3. Ahora la comparación no distingue mayúsculas/minúsculas
+          return nombreEnMinusculas.includes(filterText) &&
+            aliado.estado.toString() === this.userFilter.estadoString;
         }
+
+        // Manejar el caso donde aliado.nombre no es un string
+        return false;
       })
       .slice(start, end);
   }

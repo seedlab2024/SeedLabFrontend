@@ -38,6 +38,8 @@ export class BodyComponent implements OnInit, AfterViewInit {
   ubicacion: string = '';
   id: number = 1;
   isLoaded = false;
+  bannersLoaded = false;
+  alliesLoaded = false;
 
   private subscriptions: Subscription = new Subscription();
 
@@ -54,17 +56,32 @@ export class BodyComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
 
-    const banners$ = this.loadBanners();
-    const aliados$ = this.loadAliados();
+    const banners$ = this.loadBanners().pipe(
+      tap(() => {
+        this.bannersLoaded = true;
+        this.cdr.markForCheck();
+        setTimeout(() => this.initBannerSwiper(), 0);
+      })
+    );
+
+    const aliados$ = this.loadAliados().pipe(
+      tap(() => {
+        this.alliesLoaded = true;
+        this.cdr.markForCheck();
+        setTimeout(() => this.initAlliesSwiper(), 0);
+      })
+    );
     const personalizacion$ = this.getPersonalizacion();
 
-    const combined$ = forkJoin([banners$, aliados$, personalizacion$]);
+    // Ejecuta las subscripciones
+    this.subscriptions.add(personalizacion$.subscribe());
+    this.subscriptions.add(banners$.subscribe());
+    this.subscriptions.add(aliados$.subscribe());
 
     this.subscriptions.add(
-      combined$.subscribe(() => {
+      forkJoin([personalizacion$, banners$, aliados$]).subscribe(() => {
         this.isLoaded = true;
         this.cdr.markForCheck();
-        this.precargarBannerPrincipal();
       })
     );
 
@@ -108,24 +125,6 @@ export class BodyComponent implements OnInit, AfterViewInit {
         return of([]);
       })
     );
-  }
-
-
-  private precargarBannerPrincipal(): void {
-    try {
-      if (this.listBanner && this.listBanner.length > 0) {
-        const firstBanner = this.listBanner[0];
-        if (firstBanner && firstBanner.urlImagenSmall) {
-          const preloadLink = this.renderer.createElement('link');
-          preloadLink.rel = 'preload';
-          preloadLink.href = firstBanner.urlImagenSmall;
-          preloadLink.as = 'image';
-          this.renderer.appendChild(this.document.head, preloadLink);
-        }
-      }
-    } catch (error) {
-      console.error('Error during preloading banner:', error);
-    }
   }
 
   getFullImageUrl(path: string): string {
@@ -188,7 +187,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private initBannerSwiper(): void {
     if (isPlatformBrowser(this.platformId)) {  // Verifica si estamos en el navegador
-      if (this.bannerSwiper) {
+      if (this.bannerSwiper && typeof this.bannerSwiper.destroy === 'function') {
         this.bannerSwiper.destroy(true, true);
       }
 
@@ -198,7 +197,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
         spaceBetween: 0,
         loop: true,
         autoplay: {
-          delay: 1000,
+          delay: 2500,
           disableOnInteraction: false,
         },
         navigation: {
@@ -215,7 +214,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private initAlliesSwiper(): void {
     if (isPlatformBrowser(this.platformId)) {  // Verifica si estamos en el navegador
-      if (this.alliesSwiper) {
+      if (this.alliesSwiper && typeof this.alliesSwiper.destroy === 'function') {
         this.alliesSwiper.destroy(true, true);
       }
 
@@ -230,6 +229,17 @@ export class BodyComponent implements OnInit, AfterViewInit {
           dynamicMainBullets: 3,
         },
       });
+    }
+  }
+
+    ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+
+    if (this.bannerSwiper && typeof this.bannerSwiper.destroy === 'function') {
+      this.bannerSwiper.destroy();
+    }
+    if (this.alliesSwiper && typeof this.alliesSwiper.destroy === 'function') {
+      this.alliesSwiper.destroy();
     }
   }
 }

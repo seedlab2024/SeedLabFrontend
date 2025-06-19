@@ -24,20 +24,21 @@
       <!-- Banners -->
 
       <div class="swiper-wrapper">
-        <ng-container *ngFor="let banner of listBanner; trackBy: trackByBanner">
+        <ng-container *ngFor="let banner of listBanner; let i = index; trackBy: trackByBanner">
           <div class="swiper-slide banner-swiper-slide" style="width: 100%;">
             <picture>
               <source [srcset]="getFullImageUrl(banner.urlImagenSmall) + ' 800w, ' + 
-                                getFullImageUrl(banner.urlImagenMedium) + ' 1600w, ' + 
-                                getFullImageUrl(banner.urlImagenLarge) + ' 2400w'" sizes="100vw" type="image/webp" />
-              <img [src]="getFullImageUrl(banner.urlImagenMedium)" [alt]="'Banner image'" loading="lazy" />
+                          getFullImageUrl(banner.urlImagenMedium) + ' 1600w, ' + 
+                          getFullImageUrl(banner.urlImagenLarge) + ' 2400w'" sizes="100vw" type="image/webp" />
+
+              <!-- === CAMBIOS CLAVE AQUÍ === -->
+              <img [src]="getFullImageUrl(banner.urlImagenMedium)" [alt]="'Banner image ' + i"
+                [attr.loading]="i === 0 ? null : 'lazy'" [attr.fetchpriority]="i === 0 ? 'high' : null"
+                (error)="handleImageError($event)" />
             </picture>
           </div>
         </ng-container>
       </div>
-
-
-
 
       <div
         class="text-lg -translate-y-1/2 cursor-pointer lg:text-2xl z-absolute text-cyan-500 hover:text-cyan-500/50 top-1/2 left-5 swiper-button-prev">
@@ -74,7 +75,7 @@
               class="p-2 swiper-slide lg:flex lg:flex-row lg:items-center max-lg:flex max-lg:flex-col max-lg:items-center"
               *ngFor="let aliado of listAliados; trackBy: trackByAliado">
               <img [src]="aliado.logo" [alt]="aliado.nombre" width="400" height="300"
-                class="logo-img max-lg:mb-4 md:mt-16">
+                loading="lazy" class="logo-img max-lg:mb-4 md:mt-16">
               <div class="relative w-full -mb-24 lg:-ml-1 lg:pl-1 lg:p-1 max-lg:p-4 max-lg:text-center max-sm:-mt-8">
                 <p class="text-justify ml-4 description-line mb-1 max-sm:text-[14px] max-lg:text-center">{{
                   aliado.descripcion }}</p>
