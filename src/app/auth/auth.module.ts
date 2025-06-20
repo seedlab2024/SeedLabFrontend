@@ -13,6 +13,7 @@ import { ForgotComponent } from './pages/forgot/forgot.component';
 import { VerificationComponent } from './pages/verification/verification.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
 
 
 
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     ForgotComponent,
     VerificationComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PoliticaPrivacidadComponent
   ],
   imports: [
     CommonModule,

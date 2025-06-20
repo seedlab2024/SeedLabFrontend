@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { VerificationComponent } from './pages/verification/verification.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
       {path: 'registro', component: RegistroComponent},
       {path: 'verification', component: VerificationComponent},
       {path: 'notFound', component: NotFoundComponent},
+      {path: 'politica-privacidad', component: PoliticaPrivacidadComponent },
     ]
   }
 ];
@@ -28,6 +30,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild( routes )
-  ]
+  ],
+  exports: [RouterModule],
 })
 export class AuthRoutingModule { }
