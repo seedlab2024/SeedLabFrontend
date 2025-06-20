@@ -1,8 +1,7 @@
 <form [formGroup]="perfiladminForm">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <div class="container py-6 mx-auto md:py-12 sm:py-12 font-poppins">
+    <div class="container py-6 mx-auto md:py-12 sm:py-12 font-poppins px-4 md:px-8">
         <!-- Encabezado -->
-        <header class="flex items-center justify-between md:mb-16 sm:mb-8 ml-12 md:flex-row md:pl-4">
+        <header class="flex sm:mb-8">
             <app-header [title] [subtitle]="'Perfil'"></app-header>
         </header>
 
@@ -12,7 +11,8 @@
         <div class="flex justify-center">
             <div class="spinner " *ngIf="isLoading"></div>
         </div>
-        <div class="w-full rounded-lg bg-[#FAFAFA] max-md:mt-20 max-[600px]:px-2 max-[600px]:py-2  min-[851px]:px-16"
+        <!-- CÓDIGO CORREGIDO -->
+        <div class="w-full rounded-lg bg-[#FAFAFA] mt-8 max-[600px]:px-2 max-[600px]:py-2  min-[851px]:px-16"
             *ngIf="!isLoading">
 
             <!-- Contenido -->

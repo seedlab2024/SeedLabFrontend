@@ -14,7 +14,7 @@ import { VerificationComponent } from './pages/verification/verification.compone
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
-import { HeaderComponent } from '../header/header.component';
+import { SharedModule } from '../shared.module';
 
 
 
@@ -25,7 +25,6 @@ import { HeaderComponent } from '../header/header.component';
     VerificationComponent,
     NotFoundComponent,
     PoliticaPrivacidadComponent,
-    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +33,8 @@ import { HeaderComponent } from '../header/header.component';
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

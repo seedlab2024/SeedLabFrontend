@@ -1,22 +1,10 @@
-<nav
-  *ngIf="breadcrumbs.length"
-  aria-label="breadcrumb"
-  class="mb-4 px-4 pt-2 md:pt-4"
->
+<nav *ngIf="breadcrumbs.length" aria-label="breadcrumb" class="mb-4 pl-8 md:pl-10 pr-4 pt-2 md:pt-4">
   <ol
-    class="flex flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent text-sm text-gray-500 gap-1 md:gap-2"
-  >
-    
-    <!-- Resto de los breadcrumbs -->
-    <li
-      *ngFor="let bc of breadcrumbs; let last = last"
-      class="flex items-center min-w-fit"
-    >
+    class="flex flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent text-sm text-gray-500 gap-1 md:gap-2">
+
+    <li *ngFor="let bc of breadcrumbs; let last = last" class="flex items-center min-w-fit">
       <ng-container *ngIf="!last">
-        <a
-          [routerLink]="[bc.url]"
-          class="hover:text-blue-600 transition-colors font-medium z-10"
-        >
+        <a [routerLink]="[bc.url]" class="hover:text-blue-600 transition-colors font-medium z-10">
           {{ bc.label }}
         </a>
         <span class="mx-2 select-none">/</span>
